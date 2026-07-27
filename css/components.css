@@ -1,0 +1,108 @@
+/* 旅のしおり+ components.css — カード・タイムライン・持ち物・フォーム・モーダル */
+
+/* ---- カード・ボタン・チップ ---- */
+.card {
+  background: var(--card); border: 1px solid var(--line); border-radius: 14px;
+  padding: 12px; margin-bottom: 10px; box-shadow: 0 1px 3px rgba(60,50,30,.05);
+}
+.btn {
+  display: block; width: 100%; text-align: center; background: var(--primary); color: #fff;
+  font-size: 14px; font-weight: 700; border-radius: 999px; padding: 12px; margin: 8px 0;
+}
+.btn.ghost { background: #fff; color: var(--primary); border: 1.5px solid var(--primary); }
+.btn.danger { background: #fff; color: var(--danger); border: 1.5px solid var(--danger); }
+.btn.small { display: inline-block; width: auto; padding: 7px 16px; font-size: 12px; margin: 0; }
+.chip {
+  display: inline-block; font-size: 11px; padding: 3px 10px; border-radius: 999px;
+  background: var(--primary-soft); color: var(--primary); font-weight: 700; margin: 4px 4px 0 0;
+}
+.badge { font-size: 10px; padding: 3px 9px; border-radius: 999px; font-weight: 700; }
+.badge.plan { background: var(--primary-soft); color: var(--primary); }
+.badge.done { background: #f1eee8; color: var(--text-sub); }
+
+/* ---- 旅の棚 ---- */
+.trip-card { cursor: pointer; }
+.trip-card .cover {
+  height: 88px; border-radius: 10px; position: relative; margin-bottom: 10px;
+  background: linear-gradient(150deg, #6fc7dc, #1b7f9e);
+}
+.trip-card .cover .d {
+  position: absolute; left: 10px; bottom: 8px; color: #fff; font-size: 11px;
+  font-weight: 700; text-shadow: 0 1px 3px rgba(0,0,0,.35);
+}
+.trip-card .cover .cnt {
+  position: absolute; right: 10px; top: 8px; background: rgba(255,255,255,.88);
+  border-radius: 999px; font-size: 10px; font-weight: 700; padding: 3px 9px;
+}
+.trip-card .t { font-size: 15px; font-weight: 800; display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+.trip-card .m { font-size: 11px; color: var(--text-sub); margin-top: 3px; }
+
+/* ---- しおり(日別タブ+タイムライン) ---- */
+.day-tabs { display: flex; gap: 6px; margin: 8px 0 12px; overflow-x: auto; }
+.day-tab {
+  flex: 1 0 auto; min-width: 72px; text-align: center; font-size: 12px; font-weight: 700;
+  padding: 8px 10px; border-radius: 10px; background: #fff;
+  border: 1px solid var(--line); color: var(--text-sub);
+}
+.day-tab.on { background: var(--primary); border-color: var(--primary); color: #fff; }
+.tl { position: relative; padding-left: 18px; }
+.tl::before { content: ""; position: absolute; left: 5px; top: 8px; bottom: 8px; width: 2px; background: var(--line); }
+.tl-item { position: relative; margin-bottom: 8px; }
+.tl-item::before {
+  content: ""; position: absolute; left: -18px; top: 15px; width: 10px; height: 10px;
+  border-radius: 50%; background: var(--primary); border: 2px solid var(--bg); z-index: 1;
+}
+.tl-card {
+  background: #fff; border: 1px solid var(--line); border-radius: 12px;
+  padding: 10px 12px; cursor: pointer;
+}
+.tl-card .time { font-size: 11px; font-weight: 800; color: var(--primary); letter-spacing: .04em; }
+.tl-card .t { font-size: 14px; font-weight: 800; margin-top: 1px; }
+.tl-card .m { font-size: 12px; color: var(--text-sub); margin-top: 2px; line-height: 1.55; white-space: pre-wrap; }
+.add-dashed {
+  display: block; width: 100%; text-align: center; font-size: 13px; font-weight: 700; color: var(--primary);
+  border: 1.5px dashed #9ec7c0; border-radius: 12px; padding: 11px; background: rgba(255,255,255,.6);
+  margin-top: 6px;
+}
+
+/* ---- 持ち物 ---- */
+.check-row {
+  display: flex; align-items: center; gap: 10px; padding: 9px 2px;
+  border-bottom: 1px solid #f1eee8; font-size: 14px;
+}
+.check-row:last-child { border-bottom: none; }
+.check-row .cb {
+  width: 20px; height: 20px; border-radius: 6px; border: 1.5px solid #cfc9bd;
+  flex: none; background: #fff; position: relative;
+}
+.check-row .cb.on { background: var(--primary); border-color: var(--primary); }
+.check-row .cb.on::after { content: "✓"; color: #fff; font-size: 13px; position: absolute; left: 4px; top: -1px; }
+.check-row.on .txt { color: var(--text-sub); text-decoration: line-through; }
+.check-row .who {
+  margin-left: auto; font-size: 10px; font-weight: 700; color: var(--primary);
+  background: var(--primary-soft); border-radius: 999px; padding: 3px 9px; flex: none;
+}
+.check-row .del { color: #c5bfb4; font-size: 15px; padding: 2px 4px; flex: none; }
+.add-row { display: flex; gap: 6px; margin-top: 8px; }
+.add-row input[type="text"] { flex: 1; }
+.add-row select { flex: none; max-width: 96px; }
+
+/* ---- フォーム ---- */
+input[type="text"], input[type="time"], input[type="date"], input[type="url"],
+input[type="password"], select, textarea {
+  width: 100%; padding: 10px 12px; border: 1px solid var(--line); border-radius: 10px;
+  background: #fff; font-size: 14px; color: var(--text);
+}
+textarea { min-height: 64px; resize: vertical; }
+label.f { display: block; font-size: 11px; font-weight: 800; color: var(--text-sub); margin: 12px 2px 4px; }
+.form-note { font-size: 11px; color: var(--text-sub); line-height: 1.7; margin-top: 8px; }
+
+/* ---- モーダル ---- */
+dialog#modal {
+  border: none; border-radius: 16px; padding: 16px; width: min(92vw, 420px);
+  margin: auto; box-shadow: 0 16px 48px rgba(0,0,0,.25); background: var(--bg);
+}
+dialog#modal::backdrop { background: rgba(30,28,24,.45); }
+dialog#modal h3 { font-size: 15px; font-weight: 800; margin-bottom: 2px; }
+.modal-btns { display: flex; gap: 8px; margin-top: 14px; }
+.modal-btns .btn { margin: 0; }
