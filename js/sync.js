@@ -12,6 +12,7 @@ let listeners = [];
 let dataListeners = [];
 let pulling = false;   // 再入防止(visibilitychange連続発火・同期ボタン連打)
 let pushing = false;
+let needIndexPush = false; // trip送信後にindex更新が失敗しても、次回のpushで必ずやり直す
 
 export function onSyncChange(fn) { listeners.push(fn); }
 // pullでリモート文書を取り込んだ(=stateのオブジェクトが差し替わった)ときに通知。
@@ -52,8 +53,13 @@ export async function pullAll() {
       if (meta && meta.id) ids.add(meta.id);
     }
     let changed = false;
-    for (const id of ids) changed = (await pullTrip(id)) || changed;
-    setStatus("ok", `同期済み ${timeLabel()}`);
+    let failed = 0;
+    for (const id of ids) {
+      // 1件の壊れた文書(JSON破損等)で残り全部のpullが止まらないようにする
+      try { changed = (await pullTrip(id)) || changed; } catch { failed++; }
+    }
+    if (failed) setStatus("error", `同期エラー: ${failed}件の旅データを読めませんでした`);
+    else setStatus("ok", `同期済み ${timeLabel()}`);
     if (changed) notifyDataChange();
   } catch (e) {
     setStatus("error", `同期エラー: ${e.message}`);
@@ -66,7 +72,11 @@ export async function pullAll() {
 async function pullTrip(id) {
   const { dataRepo, token } = state.settings;
   const remote = await getJson(dataRepo, `trips/${id}.json`, token);
-  if (!remote) return false; // リモート未作成(ローカルのみ) → push側で作られる
+  if (!remote) {
+    // リモート未作成(トークン設定前に作った旅・未送信のまま再起動した旅)を必ずpush対象に拾う
+    if (state.trips[id]) dirtyIds.add(id);
+    return false;
+  }
   const local = state.trips[id];
   const r = normalizeTrip(remote.data);
   if (!local || (r.updatedAt || "") > (local.updatedAt || "")) {
@@ -83,14 +93,21 @@ async function pullTrip(id) {
 export async function pushDirty() {
   if (!hasToken()) return;
   if (!navigator.onLine) { setStatus("offline", "オフライン — 電波回復時に同期します"); return; }
-  if (pushing || !dirtyIds.size) return;
+  if (pushing || (!dirtyIds.size && !needIndexPush)) return;
   pushing = true;
   setStatus("syncing", "同期中…");
   try {
     for (const id of [...dirtyIds]) {
-      if (await pushTrip(id)) dirtyIds.delete(id); // 競合で再キューされた分は消さない
+      const atBefore = state.trips[id] ? state.trips[id].updatedAt : null;
+      const sent = await pushTrip(id);
+      if (sent) needIndexPush = true;
+      // push中にさらに編集された場合(updatedAtが進んだ場合)はキューに残して再送する
+      if (sent && (!state.trips[id] || state.trips[id].updatedAt === atBefore)) dirtyIds.delete(id);
     }
-    await pushIndex();
+    if (needIndexPush) {
+      await pushIndex();
+      needIndexPush = false;
+    }
     if (dirtyIds.size) {
       // 競合分が残っている: 「同期済み」とは言わず再試行を予約する
       setStatus("dirty", "未送信の変更あり — まもなく再送します");

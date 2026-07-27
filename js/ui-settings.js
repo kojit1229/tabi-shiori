@@ -23,6 +23,7 @@ export function renderSettings(view) {
         このトークンはパスワードではなく、上のデータ置き場だけを読み書きできる<b>専用の鍵</b>です。
         万一漏れても、この鍵だけをGitHub上ですぐ無効化できます。鍵はこの端末の中にだけ保存され、
         家族の各端末にそれぞれ設定します(設定方法は家族の管理者に聞いてください)。
+        なお「ホーム画面に追加」した場合は保存領域が別になるため、追加後のアプリでもう一度設定してください。
       </div>
       <div class="modal-btns">
         <button class="btn ghost" id="btn-test">接続テスト</button>
@@ -46,7 +47,8 @@ export function renderSettings(view) {
     if (t) s.token = t;
     saveSettings();
     view.querySelector("#test-result").textContent = "保存しました";
-    pullAll();
+    // トークン設定前に作った旅もこの流れ(pull→未存在検出→push)で送信される
+    pullAll().then(() => pushDirty()).catch(() => {});
   });
 
   view.querySelector("#btn-test").addEventListener("click", async () => {
