@@ -80,6 +80,8 @@ function main() {
   if ("serviceWorker" in navigator && location.protocol === "https:") {
     navigator.serviceWorker.register("sw.js").catch(() => {});
   }
+  // ストレージ退避(iOSのbest-effort削除)をなるべく防ぐ
+  if (navigator.storage && navigator.storage.persist) navigator.storage.persist().catch(() => {});
 }
 
 main();

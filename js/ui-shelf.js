@@ -25,9 +25,12 @@ export function renderShelf(view, navigate) {
   for (const m of trips) {
     const t = state.trips[m.id];
     const left = daysUntil(m.start);
-    const status = left >= 0
+    const leftEnd = daysUntil(m.end || m.start);
+    const status = left > 0
       ? `<span class="badge plan">計画中</span>`
-      : `<span class="badge done">記録済み</span>`;
+      : (leftEnd >= 0
+        ? `<span class="badge plan">旅行中</span>`
+        : `<span class="badge done">記録済み</span>`);
     const cnt = left > 0 ? `<div class="cnt">あと${left}日</div>` : "";
     const itemCount = t ? t.days.reduce((n, d) => n + d.items.length, 0) : 0;
     const packDone = t ? t.packing.shared.filter(p => p.checked).length : 0;
@@ -63,7 +66,7 @@ function openNewTrip(navigate) {
       <input type="date" name="end" required>
       <label class="f">メンバー(「・」や読点で区切り)</label>
       <input type="text" name="members" placeholder="例: パパ・ママ・むすめ">
-      <div class="form-note">メンバー名は持ち物の担当や感想の名前に使います。あとで設定からも直せます。</div>`,
+      <div class="form-note">メンバー名は持ち物の担当や感想の名前に使います。あとで設定からも直せます。旅程は最大30日分まで作られます。</div>`,
     onOk(v) {
       if (!v.title || !v.start || !v.end) return false;
       if (v.end < v.start) { alert("帰着日が出発日より前になっています"); return false; }

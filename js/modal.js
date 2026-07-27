@@ -1,10 +1,12 @@
 // modal.js — <dialog>ベースの共通モーダル。フォームHTMLを受け取り、確定時に値を返す。
 // 注意: html には esc() 済みの文字列のみ埋め込むこと(XSS防止はレンダリング側の責務)。
+// title はここでエスケープする(同期文書由来の日付等が混ざるため)
+import { esc } from "./store.js";
 
 export function openModal({ title, html, okLabel = "保存", danger, onOk, onDanger }) {
   const dlg = document.getElementById("modal");
   dlg.innerHTML = `
-    <h3>${title}</h3>
+    <h3>${esc(title)}</h3>
     <form method="dialog" id="modal-form">${html}
       <div class="modal-btns">
         <button type="button" class="btn ghost" data-act="cancel">キャンセル</button>

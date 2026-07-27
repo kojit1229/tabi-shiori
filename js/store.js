@@ -46,18 +46,24 @@ export function saveTrips() {
   localStorage.setItem(LS_TRIPS, JSON.stringify(state.trips));
 }
 
-// 欠損フィールドをデフォルト補完(寛容パース)
+// 欠損・不正な型をデフォルト補完(寛容パース)。days:[null] 等の壊れた文書でも例外を出さない
+const isObj = (x) => x !== null && typeof x === "object" && !Array.isArray(x);
+
 export function normalizeTrip(t) {
   t.schema = t.schema || 1;
-  t.title = t.title || "無題の旅";
-  t.members = Array.isArray(t.members) ? t.members : [];
-  t.days = Array.isArray(t.days) ? t.days : [];
-  for (const d of t.days) d.items = Array.isArray(d.items) ? d.items : [];
-  t.packing = t.packing || {};
-  t.packing.shared = Array.isArray(t.packing.shared) ? t.packing.shared : [];
-  t.packing.personal = t.packing.personal || {};
-  t.editLog = Array.isArray(t.editLog) ? t.editLog : [];
-  t.updatedAt = t.updatedAt || nowIso();
+  t.title = typeof t.title === "string" && t.title ? t.title : "無題の旅";
+  t.members = Array.isArray(t.members) ? t.members.filter(m => typeof m === "string") : [];
+  t.days = Array.isArray(t.days) ? t.days.filter(isObj) : [];
+  for (const d of t.days) d.items = Array.isArray(d.items) ? d.items.filter(isObj) : [];
+  t.packing = isObj(t.packing) ? t.packing : {};
+  t.packing.shared = Array.isArray(t.packing.shared) ? t.packing.shared.filter(isObj) : [];
+  t.packing.personal = isObj(t.packing.personal) ? t.packing.personal : {};
+  for (const k of Object.keys(t.packing.personal)) {
+    t.packing.personal[k] = Array.isArray(t.packing.personal[k])
+      ? t.packing.personal[k].filter(isObj) : [];
+  }
+  t.editLog = Array.isArray(t.editLog) ? t.editLog.filter(isObj) : [];
+  t.updatedAt = typeof t.updatedAt === "string" ? t.updatedAt : nowIso();
   return t;
 }
 
