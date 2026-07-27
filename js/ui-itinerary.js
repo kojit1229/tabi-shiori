@@ -4,8 +4,10 @@ import { markDirty } from "./sync.js";
 import { openModal } from "./modal.js";
 
 export function renderItinerary(view, trip) {
+  // 同期で days が欠けた文書が来ても、追加した予定が捨てられないよう実体を補う(B-4)
+  if (!trip.days.length) trip.days.push({ date: trip.start, items: [] });
   if (state.currentDay >= trip.days.length) state.currentDay = 0;
-  const day = trip.days[state.currentDay] || { date: trip.start, items: [] };
+  const day = trip.days[state.currentDay];
 
   let tabs = "";
   trip.days.forEach((d, i) => {
@@ -15,8 +17,10 @@ export function renderItinerary(view, trip) {
   const items = [...day.items].sort((a, b) => (a.time || "").localeCompare(b.time || ""));
   let tl = "";
   for (const it of items) {
-    const linkChip = it.url
-      ? `<a class="chip" href="${esc(it.url)}" target="_blank" rel="noopener noreferrer">🔗 リンク</a>`
+    // 描画側でもスキーム検証する(同期経由の文書に javascript: が混入しても実行させない。A-1)
+    const safeUrl = /^https?:\/\//i.test(it.url || "") ? it.url : "";
+    const linkChip = safeUrl
+      ? `<a class="chip" href="${esc(safeUrl)}" target="_blank" rel="noopener noreferrer">🔗 リンク</a>`
       : "";
     tl += `
       <div class="tl-item">
@@ -30,10 +34,18 @@ export function renderItinerary(view, trip) {
   }
   if (!items.length) tl = `<div class="empty">この日の予定はまだありません</div>`;
 
+  // 編集履歴(後勝ち同期で上書きされたときの確認手段。C-2)
+  const logRows = [...trip.editLog].slice(-10).reverse().map(e =>
+    `<div class="form-note">${esc(e.at.slice(5, 16).replace("T", " "))} ${esc(e.by)}: ${esc(e.action)}</div>`).join("");
+
   view.innerHTML = `
     <div class="day-tabs">${tabs}</div>
     <div class="tl">${tl}</div>
-    <button class="add-dashed" id="add-item">＋ 予定を追加</button>`;
+    <button class="add-dashed" id="add-item">＋ 予定を追加</button>
+    <details class="card" style="margin-top:14px;">
+      <summary style="font-size:12px; font-weight:700; color:var(--text-sub); cursor:pointer;">編集履歴(直近10件)</summary>
+      ${logRows || `<div class="form-note">まだありません</div>`}
+    </details>`;
 
   for (const el of view.querySelectorAll(".day-tab")) {
     el.addEventListener("click", () => {
@@ -49,6 +61,15 @@ export function renderItinerary(view, trip) {
     });
   }
   view.querySelector("#add-item").addEventListener("click", () => openItemModal(view, trip, day, null));
+}
+
+// 書き込み先を常に最新のtripオブジェクトへ解決する。
+// 編集中に同期pullが文書を差し替えても、確定した内容が旧オブジェクトへ消えない(B-2)
+function resolveTarget(trip, day) {
+  const t = state.trips[trip.id] || trip;
+  let d = t.days.find(x => x.date === day.date);
+  if (!d) { d = { date: day.date, items: [] }; t.days.push(d); }
+  return { t, d };
 }
 
 function openItemModal(view, trip, day, item) {
@@ -72,21 +93,25 @@ function openItemModal(view, trip, day, item) {
         alert("リンクは https:// で始まるURLを入れてください");
         return false;
       }
-      if (isNew) {
-        day.items.push({ id: uid(), time: vals.time, title: vals.title, memo: vals.memo, url: vals.url });
-        logEdit(trip, `予定を追加: ${vals.title}`);
+      const { t, d } = resolveTarget(trip, day);
+      const patch = { time: vals.time, title: vals.title, memo: vals.memo, url: vals.url };
+      const target = isNew ? null : d.items.find(x => x.id === item.id);
+      if (target) {
+        Object.assign(target, patch);
+        logEdit(t, `予定を編集: ${vals.title}`);
       } else {
-        Object.assign(item, { time: vals.time, title: vals.title, memo: vals.memo, url: vals.url });
-        logEdit(trip, `予定を編集: ${vals.title}`);
+        d.items.push({ id: isNew ? uid() : item.id, ...patch });
+        logEdit(t, `予定を追加: ${vals.title}`);
       }
-      markDirty(trip.id);
-      renderItinerary(view, trip);
+      markDirty(t.id);
+      renderItinerary(view, t);
     },
     onDanger() {
-      day.items = day.items.filter(x => x.id !== item.id);
-      logEdit(trip, `予定を削除: ${item.title}`);
-      markDirty(trip.id);
-      renderItinerary(view, trip);
+      const { t, d } = resolveTarget(trip, day);
+      d.items = d.items.filter(x => x.id !== item.id);
+      logEdit(t, `予定を削除: ${item.title}`);
+      markDirty(t.id);
+      renderItinerary(view, t);
     },
   });
 }

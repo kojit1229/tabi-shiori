@@ -12,6 +12,7 @@ export const state = {
   trips: {},          // id -> tripDoc
   currentTripId: null,
   currentDay: 0,
+  packingViewer: null,
   sync: { st: "notoken", msg: "同期は未設定(ローカル保存で動作中)" },
 };
 

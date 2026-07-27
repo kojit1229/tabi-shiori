@@ -15,6 +15,14 @@ export function renderPacking(view, trip) {
   const personal = viewing ? (trip.packing.personal[viewing] || []) : [];
   const personalRows = personal.map(p => row(p, false)).join("")
     || `<div class="empty">まだありません</div>`;
+  // メンバーが1人もいない場合は追加欄の代わりに案内を出す(無言失敗防止。B-5)
+  const personalBody = viewing
+    ? `${personalRows}
+      <div class="add-row">
+        <input type="text" id="personal-text" placeholder="${esc(viewing)}の持ち物を追加">
+        <button class="btn small" id="personal-add">追加</button>
+      </div>`
+    : `<div class="empty">メンバーが未設定です。<br>⚙️ 設定で「あなたの名前」を入れるか、旅のメンバーを登録してください</div>`;
 
   const memberOpts = members.map(m =>
     `<option value="${esc(m)}"${m === viewing ? " selected" : ""}>${esc(m)}</option>`).join("");
@@ -31,49 +39,56 @@ export function renderPacking(view, trip) {
       </div>
     </div>
     <div class="sec-h">ひとりずつ ${members.length ? `<select id="viewer-sel" style="width:auto; padding:4px 8px; font-size:12px;">${memberOpts}</select>` : ""}</div>
-    <div class="card" id="personal-list">${personalRows}
-      <div class="add-row">
-        <input type="text" id="personal-text" placeholder="${esc(viewing || "メンバー")}の持ち物を追加">
-        <button class="btn small" id="personal-add">追加</button>
-      </div>
-    </div>`;
+    <div class="card" id="personal-list">${personalBody}</div>`;
 
-  const rerender = () => renderPacking(view, trip);
+  // 書き込み先を常に最新のtripオブジェクトへ解決する(同期pullで差し替わっても消えない。B-2)
+  const fresh = () => state.trips[trip.id] || trip;
+  const rerender = () => renderPacking(view, fresh());
 
   view.querySelector("#shared-add").addEventListener("click", () => {
     const text = view.querySelector("#shared-text").value.trim();
     if (!text) return;
     const assignee = view.querySelector("#shared-assignee").value;
-    trip.packing.shared.push({ id: uid(), text, assignee, checked: false });
-    logEdit(trip, `持ち物を追加: ${text}`);
-    markDirty(trip.id); rerender();
+    const t = fresh();
+    t.packing.shared.push({ id: uid(), text, assignee, checked: false });
+    logEdit(t, `持ち物を追加: ${text}`);
+    markDirty(t.id); rerender();
   });
-  view.querySelector("#personal-add").addEventListener("click", () => {
+  const personalAdd = view.querySelector("#personal-add");
+  if (personalAdd) personalAdd.addEventListener("click", () => {
     const text = view.querySelector("#personal-text").value.trim();
     if (!text || !viewing) return;
-    trip.packing.personal[viewing].push({ id: uid(), text, checked: false });
-    logEdit(trip, `${viewing}の持ち物を追加: ${text}`);
-    markDirty(trip.id); rerender();
+    const t = fresh();
+    if (!t.packing.personal[viewing]) t.packing.personal[viewing] = [];
+    t.packing.personal[viewing].push({ id: uid(), text, checked: false });
+    logEdit(t, `${viewing}の持ち物を追加: ${text}`);
+    markDirty(t.id); rerender();
   });
   const sel = view.querySelector("#viewer-sel");
   if (sel) sel.addEventListener("change", () => { state.packingViewer = sel.value; rerender(); });
 
   view.querySelectorAll(".check-row").forEach(el => {
     const shared = el.dataset.shared === "1";
-    const list = shared ? trip.packing.shared : trip.packing.personal[viewing];
-    const item = list.find(x => x.id === el.dataset.id);
-    if (!item) return;
+    const pick = () => {
+      const t = fresh();
+      const list = shared ? t.packing.shared : (t.packing.personal[viewing] || []);
+      return { t, list, item: list.find(x => x.id === el.dataset.id) };
+    };
     el.querySelector(".cb").addEventListener("click", () => {
+      const { t, item } = pick();
+      if (!item) { rerender(); return; } // 同期で消えた項目 → 表示を最新化
       item.checked = !item.checked;
-      logEdit(trip, `${item.checked ? "✓" : "□"} ${item.text}`);
-      markDirty(trip.id); rerender();
+      logEdit(t, `${item.checked ? "✓" : "□"} ${item.text}`);
+      markDirty(t.id); rerender();
     });
     el.querySelector(".del").addEventListener("click", () => {
+      const { t, list, item } = pick();
+      if (!item) { rerender(); return; }
       if (!confirm(`「${item.text}」を削除しますか?`)) return;
       const idx = list.indexOf(item);
       if (idx >= 0) list.splice(idx, 1);
-      logEdit(trip, `持ち物を削除: ${item.text}`);
-      markDirty(trip.id); rerender();
+      logEdit(t, `持ち物を削除: ${item.text}`);
+      markDirty(t.id); rerender();
     });
   });
 }
