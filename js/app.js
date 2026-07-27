@@ -1,6 +1,6 @@
 // app.js — 起動・ハッシュルーティング・ヘッダー描画・同期状態表示
 import { state, esc, loadAll, fmtDate } from "./store.js";
-import { pullAll, initSyncTriggers, onSyncChange } from "./sync.js";
+import { pullAll, pushDirty, initSyncTriggers, onSyncChange, onDataChange } from "./sync.js";
 import { renderShelf } from "./ui-shelf.js";
 import { renderItinerary } from "./ui-itinerary.js";
 import { renderPacking } from "./ui-packing.js";
@@ -60,13 +60,22 @@ function renderSyncBar(sync) {
 function main() {
   loadAll();
   onSyncChange(renderSyncBar);
+  // pullでリモート文書を取り込んだら再描画し、画面が古いtripオブジェクトを掴み続けないようにする。
+  // ただし入力中・モーダル表示中は上書きしない(打鍵消失防止)
+  onDataChange(() => {
+    const dlg = document.getElementById("modal");
+    const ae = document.activeElement;
+    const editing = (dlg && dlg.open) || (ae && /^(INPUT|TEXTAREA|SELECT)$/.test(ae.tagName));
+    if (!editing) route();
+  });
   window.addEventListener("hashchange", route);
   route();
   initSyncTriggers();
+  // 起動時: pull → 表示最新化 → ローカルの方が新しい分を送信(B-3対応)
   pullAll().then(() => {
-    // pull で他端末の変更を取り込んだ直後に表示を最新化する
     route();
-  });
+    return pushDirty();
+  }).catch(() => {});
   // Service Worker は本番(https)のみ。localhost開発時はキャッシュが邪魔なので登録しない
   if ("serviceWorker" in navigator && location.protocol === "https:") {
     navigator.serviceWorker.register("sw.js").catch(() => {});
