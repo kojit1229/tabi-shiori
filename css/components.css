@@ -97,6 +97,48 @@ textarea { min-height: 64px; resize: vertical; }
 label.f { display: block; font-size: 11px; font-weight: 800; color: var(--text-sub); margin: 12px 2px 4px; }
 .form-note { font-size: 11px; color: var(--text-sub); line-height: 1.7; margin-top: 8px; }
 
+/* ---- 記録(旅行中) ---- */
+.now { background: var(--primary); color: #fff; border-radius: 14px; padding: 13px; margin-bottom: 10px; }
+.now .lbl { font-size: 10px; font-weight: 700; opacity: .75; letter-spacing: .08em; }
+.now .t { font-size: 17px; font-weight: 800; margin: 3px 0; }
+.now .m { font-size: 11px; opacity: .9; }
+.badge.extra { background: var(--amber-soft); color: var(--amber); }
+.rec-card {
+  background: var(--card); border: 1px solid var(--line); border-radius: 14px;
+  padding: 11px 12px; margin-bottom: 10px;
+}
+.rec-card.rec-done { border-color: #bcd9d3; background: #f4faf8; }
+.rec-head { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+.rec-head .time { font-size: 11px; font-weight: 800; color: var(--primary); flex: none; }
+.rec-head .t { font-size: 14px; font-weight: 800; flex: 1; min-width: 0; }
+.done-btn {
+  flex: none; font-size: 11px; font-weight: 700; padding: 6px 12px; border-radius: 999px;
+  border: 1.5px solid var(--line); color: var(--text-sub); background: #fff;
+}
+.done-btn.on { background: var(--primary); border-color: var(--primary); color: #fff; }
+.rec-note { margin-top: 8px; font-size: 13px; }
+.photo-strip { display: flex; gap: 6px; margin-top: 8px; flex-wrap: wrap; }
+.ph-thumb {
+  width: 64px; height: 64px; border-radius: 9px; overflow: hidden; position: relative;
+  background: #f1eee8; flex: none;
+}
+.ph-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.ph-thumb .ph-del {
+  position: absolute; top: 2px; right: 2px; width: 18px; height: 18px; border-radius: 50%;
+  background: rgba(30,28,24,.55); color: #fff; font-size: 10px; line-height: 1; padding: 0;
+  z-index: 1;
+}
+.ph-thumb.ph-wait::after {
+  content: "同期待ち"; position: absolute; inset: 0; display: flex; align-items: center;
+  justify-content: center; font-size: 9px; color: var(--text-sub);
+  pointer-events: none; /* 削除ボタンのタップを遮らない */
+}
+.ph-add {
+  width: 64px; height: 64px; border-radius: 9px; border: 1.5px dashed #cfc9bd;
+  display: flex; align-items: center; justify-content: center; color: var(--text-sub);
+  font-size: 20px; cursor: pointer; flex: none;
+}
+
 /* ---- モーダル ---- */
 dialog#modal {
   border: none; border-radius: 16px; padding: 16px; width: min(92vw, 420px);

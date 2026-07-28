@@ -4,6 +4,7 @@ import { pullAll, pushDirty, initSyncTriggers, onSyncChange, onDataChange } from
 import { renderShelf } from "./ui-shelf.js";
 import { renderItinerary } from "./ui-itinerary.js";
 import { renderPacking } from "./ui-packing.js";
+import { renderRecord } from "./ui-record.js";
 import { renderSettings } from "./ui-settings.js";
 
 const view = document.getElementById("view");
@@ -23,9 +24,10 @@ function route() {
     const trip = state.trips[parts[1]];
     if (!trip) { navigate("#/"); return; }
     state.currentTripId = trip.id;
-    const tab = parts[2] === "packing" ? "packing" : "shiori";
+    const tab = ["packing", "record"].includes(parts[2]) ? parts[2] : "shiori";
     setHeader(trip, tab);
     if (tab === "packing") renderPacking(view, trip);
+    else if (tab === "record") renderRecord(view, trip);
     else renderItinerary(view, trip);
     return;
   }
