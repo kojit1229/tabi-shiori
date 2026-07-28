@@ -1,5 +1,5 @@
 // sw.js — アプリシェルのキャッシュ。更新時はバージョンを必ず+1する
-const CACHE = "tabi-shiori-v2";
+const CACHE = "tabi-shiori-v3";
 const ASSETS = [
   "./", "./index.html", "./css/base.css", "./css/components.css",
   "./js/app.js", "./js/store.js", "./js/github.js", "./js/sync.js",
