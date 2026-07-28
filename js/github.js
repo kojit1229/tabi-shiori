@@ -71,6 +71,35 @@ export async function putJson(repo, path, token, data, sha, message) {
   return putFile(repo, path, token, JSON.stringify(data, null, 2), sha, message);
 }
 
+// バイナリ(写真)の生取得。404 は null。private repoでもトークンで読める
+export async function getRawBlob(repo, path, token) {
+  const res = await fetch(`${API}/repos/${repo}/contents/${path}`, {
+    headers: { ...headers(token), "Accept": "application/vnd.github.raw" },
+    cache: "no-store",
+  });
+  if (res.status === 404) return null;
+  if (!res.ok) throw new GithubError(res.status, `取得失敗 ${res.status}: ${path}`);
+  return res.blob();
+}
+
+// バイナリ(base64済み)の新規作成。既存パスだった場合(422)はshaを引いて上書き
+export async function putBinaryB64(repo, path, token, b64, message) {
+  const doPut = (sha) => fetch(`${API}/repos/${repo}/contents/${path}`, {
+    method: "PUT", headers: headers(token),
+    body: JSON.stringify(sha ? { message, content: b64, sha } : { message, content: b64 }),
+  });
+  let res = await doPut(null);
+  if (res.status === 422 || res.status === 409) {
+    const meta = await fetch(`${API}/repos/${repo}/contents/${path}`, { headers: headers(token), cache: "no-store" });
+    if (meta.ok) {
+      const j = await meta.json();
+      res = await doPut(j.sha);
+    }
+  }
+  if (!res.ok) throw new GithubError(res.status, `写真の保存失敗 ${res.status}: ${path}`);
+  return true;
+}
+
 // トークン・repo設定の疎通確認(設定画面の「接続テスト」用)
 export async function checkAccess(repo, token) {
   const res = await fetch(`${API}/repos/${repo}`, { headers: headers(token), cache: "no-store" });

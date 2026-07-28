@@ -100,7 +100,9 @@ function openItemModal(view, trip, day, item) {
         Object.assign(target, patch);
         logEdit(t, `予定を編集: ${vals.title}`);
       } else {
-        d.items.push({ id: isNew ? uid() : item.id, ...patch });
+        // 既存編集で実体が見つからない場合も、旧オブジェクトを引き継いで
+        // 記録タブのフィールド(photos/note/done/extra)を失わない
+        d.items.push({ ...(item || {}), id: isNew ? uid() : item.id, ...patch });
         logEdit(t, `予定を追加: ${vals.title}`);
       }
       markDirty(t.id);

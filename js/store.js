@@ -13,6 +13,8 @@ export const state = {
   currentTripId: null,
   currentDay: 0,
   packingViewer: null,
+  recordDay: null,
+  recordDayInit: null,
   sync: { st: "notoken", msg: "同期は未設定(ローカル保存で動作中)" },
 };
 
@@ -54,7 +56,16 @@ export function normalizeTrip(t) {
   t.title = typeof t.title === "string" && t.title ? t.title : "無題の旅";
   t.members = Array.isArray(t.members) ? t.members.filter(m => typeof m === "string") : [];
   t.days = Array.isArray(t.days) ? t.days.filter(isObj) : [];
-  for (const d of t.days) d.items = Array.isArray(d.items) ? d.items.filter(isObj) : [];
+  for (const d of t.days) {
+    d.items = Array.isArray(d.items) ? d.items.filter(isObj) : [];
+    for (const it of d.items) {
+      // 写真参照はパス形式まで検証(同期文書経由で任意パスをAPIへ投げさせない)
+      it.photos = Array.isArray(it.photos)
+        ? it.photos.filter(p => isObj(p) && typeof p.id === "string"
+            && typeof p.path === "string" && /^photos\/[A-Za-z0-9_.-]+\/[A-Za-z0-9_.-]+\.jpg$/.test(p.path))
+        : [];
+    }
+  }
   t.packing = isObj(t.packing) ? t.packing : {};
   t.packing.shared = Array.isArray(t.packing.shared) ? t.packing.shared.filter(isObj) : [];
   t.packing.personal = isObj(t.packing.personal) ? t.packing.personal : {};
@@ -68,7 +79,7 @@ export function normalizeTrip(t) {
 }
 
 // ローカルタイムゾーンで YYYY-MM-DD を組み立てる(toISOStringはUTC変換で日付がずれるため不可)
-function ymd(d) {
+export function ymd(d) {
   return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-${String(d.getDate()).padStart(2, "0")}`;
 }
 

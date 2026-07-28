@@ -4,6 +4,7 @@
 
 import { state, saveTrips, normalizeTrip, nowIso } from "./store.js";
 import { getJson, putJson, GithubError } from "./github.js";
+import { uploadPending, pendingCount } from "./photos.js";
 
 const PUSH_DEBOUNCE_MS = 3000;
 let pushTimer = null;
@@ -93,10 +94,12 @@ async function pullTrip(id) {
 export async function pushDirty() {
   if (!hasToken()) return;
   if (!navigator.onLine) { setStatus("offline", "オフライン — 電波回復時に同期します"); return; }
-  if (pushing || (!dirtyIds.size && !needIndexPush)) return;
-  pushing = true;
-  setStatus("syncing", "同期中…");
+  if (pushing) return;
+  pushing = true; // ロックはawaitより先に取る(2本が同時に関門を通過する再入を防ぐ)
   try {
+    const pendPhotos = await pendingCount().catch(() => 0);
+    if (!dirtyIds.size && !needIndexPush && !pendPhotos) return;
+    setStatus("syncing", "同期中…");
     for (const id of [...dirtyIds]) {
       const atBefore = state.trips[id] ? state.trips[id].updatedAt : null;
       const sent = await pushTrip(id);
@@ -108,6 +111,8 @@ export async function pushDirty() {
       await pushIndex();
       needIndexPush = false;
     }
+    // 文書の後に写真本体を送る(文書側のpath参照が先にあっても404=待ち表示で壊れない)
+    await uploadPending(state.settings.dataRepo, state.settings.token);
     if (dirtyIds.size) {
       // 競合分が残っている: 「同期済み」とは言わず再試行を予約する
       setStatus("dirty", "未送信の変更あり — まもなく再送します");
