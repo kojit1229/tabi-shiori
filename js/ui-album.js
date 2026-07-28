@@ -128,3 +128,107 @@ async function importPhotos(input, tripId) {
   }
   const t = state.trips[tripId];
   if (changed && t) {
+    logEdit(t, `アルバムに写真を${changed}枚追加`);
+    markDirty(t.id);
+  }
+  const notes = [];
+  if (placed) notes.push(`${placed}枚を予定に自動配置しました`);
+  if (bucketed) notes.push(`${bucketed}枚は「その他の写真」へ`);
+  if (unknown) notes.push(`${unknown}枚は撮影日が旅程外・不明のためDay 1の「その他」へ`);
+  if (full) notes.push(`${full}枚は上限(1日${MAX_DAY_BUCKET}枚)のため取り込みませんでした`);
+  if (failed) notes.push(`${failed}枚は取り込めませんでした`);
+  if (notes.length) alert(notes.join("\n"));
+}
+
+function findPhotoContext(trip, thumbEl) {
+  const card = thumbEl.closest(".alb-card");
+  const dayIdx = Number(card.dataset.day);
+  const itemId = card.dataset.item;
+  const day = trip.days[dayIdx];
+  if (!day) return null;
+  const list = itemId ? (day.items.find(x => x.id === itemId) || {}).photos : day.photos;
+  return { list: list || [], pid: thumbEl.dataset.pid };
+}
+
+function deletePhoto(view, trip, thumbEl) {
+  if (!confirm("この写真をアルバムから外しますか?")) return;
+  const t = state.trips[trip.id] || trip;
+  const ctx = findPhotoContext(t, thumbEl);
+  if (!ctx) return;
+  const idx = ctx.list.findIndex(p => p.id === ctx.pid);
+  if (idx >= 0) ctx.list.splice(idx, 1);
+  removeLocalPhoto(ctx.pid).catch(() => {});
+  logEdit(t, "アルバムの写真を削除");
+  markDirty(t.id);
+  renderAlbum(view, t);
+}
+
+function openViewer(thumbEl) {
+  const img = thumbEl.querySelector("img");
+  if (!img || !img.src || thumbEl.classList.contains("ph-wait")) return;
+  openModal({
+    title: "写真",
+    okLabel: "閉じる",
+    html: `<img src="${esc(img.src)}" style="max-width:100%; border-radius:10px;" alt="写真拡大">`,
+    onOk() {},
+  });
+}
+
+function openCommentModal(view, trip, itemId) {
+  openModal({
+    title: "感想を書く",
+    okLabel: "追加",
+    html: `
+      <label class="f">名前</label>
+      <input type="text" name="by" value="${esc(state.settings.memberName)}" placeholder="例: パパ">
+      <label class="f">感想</label>
+      <textarea name="text" placeholder="例: ジンベエザメでかすぎて固まった" required></textarea>`,
+    onOk(v) {
+      if (!v.text) return false;
+      const t = state.trips[trip.id] || trip;
+      // dayIdxは同期pullで並びが変わり得るため、item idで全日から引き直す
+      let item = null;
+      for (const d of t.days) {
+        item = d.items.find(x => x.id === itemId);
+        if (item) break;
+      }
+      if (!item) {
+        alert("この予定は他の端末で変更されたため、感想を追加できませんでした");
+        renderAlbum(view, t);
+        return;
+      }
+      item.comments = item.comments || [];
+      item.comments.push({ id: uid(), by: v.by || "(名前未設定)", text: v.text, at: nowIso() });
+      logEdit(t, `感想: ${item.title}`);
+      markDirty(t.id);
+      renderAlbum(view, t);
+    },
+  });
+}
+
+function openAlbumUrlModal(view, trip) {
+  openModal({
+    title: "共有アルバムのリンク",
+    okLabel: "保存",
+    danger: trip.albumUrl ? "リンクを外す" : null,
+    html: `
+      <label class="f">iCloud共有アルバムのURL</label>
+      <input type="url" name="url" value="${esc(trip.albumUrl || "")}" placeholder="https://www.icloud.com/sharedalbum/…">
+      <div class="form-note">iPhoneの写真アプリで共有アルバムを作り「公開Webサイト」をオンにするとリンクをコピーできます。リンクを知っている人は誰でも見られる点に注意。</div>`,
+    onOk(v) {
+      if (v.url && !/^https:\/\//.test(v.url)) { alert("https:// で始まるURLを入れてください"); return false; }
+      const t = state.trips[trip.id] || trip;
+      t.albumUrl = v.url;
+      logEdit(t, "共有アルバムリンクを設定");
+      markDirty(t.id);
+      renderAlbum(view, t);
+    },
+    onDanger() {
+      const t = state.trips[trip.id] || trip;
+      t.albumUrl = "";
+      logEdit(t, "共有アルバムリンクを解除");
+      markDirty(t.id);
+      renderAlbum(view, t);
+    },
+  });
+}
