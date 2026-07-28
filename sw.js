@@ -1,10 +1,11 @@
 // sw.js — アプリシェルのキャッシュ。更新時はバージョンを必ず+1する
-const CACHE = "tabi-shiori-v4";
+const CACHE = "tabi-shiori-v5";
 const ASSETS = [
   "./", "./index.html", "./css/base.css", "./css/components.css",
   "./js/app.js", "./js/store.js", "./js/github.js", "./js/sync.js",
-  "./js/modal.js", "./js/photos.js", "./js/ui-shelf.js", "./js/ui-itinerary.js",
-  "./js/ui-packing.js", "./js/ui-record.js", "./js/ui-settings.js",
+  "./js/modal.js", "./js/photos.js", "./js/exif.js", "./js/album-logic.js",
+  "./js/ui-shelf.js", "./js/ui-itinerary.js", "./js/ui-packing.js",
+  "./js/ui-record.js", "./js/ui-album.js", "./js/ui-thumbs.js", "./js/ui-settings.js",
   "./manifest.webmanifest", "./icons/icon-192.png", "./icons/icon-512.png",
 ];
 

@@ -56,16 +56,20 @@ export function normalizeTrip(t) {
   t.title = typeof t.title === "string" && t.title ? t.title : "無題の旅";
   t.members = Array.isArray(t.members) ? t.members.filter(m => typeof m === "string") : [];
   t.days = Array.isArray(t.days) ? t.days.filter(isObj) : [];
+  // 写真参照はパス形式まで検証(同期文書経由で任意パスをAPIへ投げさせない)
+  const photoOk = (p) => isObj(p) && typeof p.id === "string"
+    && typeof p.path === "string" && /^photos\/[A-Za-z0-9_.-]+\/[A-Za-z0-9_.-]+\.jpg$/.test(p.path);
   for (const d of t.days) {
     d.items = Array.isArray(d.items) ? d.items.filter(isObj) : [];
+    d.photos = Array.isArray(d.photos) ? d.photos.filter(photoOk) : []; // 日別「その他の写真」
     for (const it of d.items) {
-      // 写真参照はパス形式まで検証(同期文書経由で任意パスをAPIへ投げさせない)
-      it.photos = Array.isArray(it.photos)
-        ? it.photos.filter(p => isObj(p) && typeof p.id === "string"
-            && typeof p.path === "string" && /^photos\/[A-Za-z0-9_.-]+\/[A-Za-z0-9_.-]+\.jpg$/.test(p.path))
-        : [];
+      it.id = (typeof it.id === "string" && it.id) ? it.id : uid(); // id無し予定は削除・感想の対象解決が壊れるため補完
+      it.photos = Array.isArray(it.photos) ? it.photos.filter(photoOk) : [];
+      it.comments = Array.isArray(it.comments)
+        ? it.comments.filter(c => isObj(c) && typeof c.text === "string") : [];
     }
   }
+  t.albumUrl = (typeof t.albumUrl === "string" && /^https:\/\//.test(t.albumUrl)) ? t.albumUrl : "";
   t.packing = isObj(t.packing) ? t.packing : {};
   t.packing.shared = Array.isArray(t.packing.shared) ? t.packing.shared.filter(isObj) : [];
   t.packing.personal = isObj(t.packing.personal) ? t.packing.personal : {};
