@@ -2,7 +2,8 @@
 import { state, esc, uid, logEdit, fmtDate, ymd } from "./store.js";
 import { markDirty } from "./sync.js";
 import { openModal } from "./modal.js";
-import { capturePhotos, photoURL, removeLocalPhoto, MAX_PHOTOS_PER_ITEM } from "./photos.js";
+import { capturePhotos, removeLocalPhoto, MAX_PHOTOS_PER_ITEM } from "./photos.js";
+import { fillThumbs } from "./ui-thumbs.js";
 
 // 「いまの予定」の選定: 開始時刻を過ぎた最後の予定、なければ次の予定(純ロジック・テスト対象)
 export function pickNow(items, nowHM) {
@@ -142,30 +143,7 @@ export function renderRecord(view, trip) {
   }
   view.querySelector("#add-extra").addEventListener("click", () => openExtraModal(view, trip, day));
 
-  fillThumbnails(view);
-}
-
-// サムネイルを非同期に流し込む(未アップロード他端末分は「待ち」表示→定期再試行)
-async function fillThumbnails(view) {
-  const { dataRepo, token } = state.settings;
-  const tripsAllPhotos = new Map();
-  for (const t of Object.values(state.trips)) {
-    for (const d of t.days) for (const it of d.items) for (const p of it.photos || []) tripsAllPhotos.set(p.id, p);
-  }
-  let waiting = false;
-  for (const el of view.querySelectorAll(".ph-thumb")) {
-    const ref = tripsAllPhotos.get(el.dataset.pid);
-    if (!ref) continue;
-    const url = await photoURL(ref, dataRepo, token);
-    const img = el.querySelector("img");
-    if (!img) continue;
-    if (url) { img.src = url; el.classList.remove("ph-wait"); }
-    else { el.classList.add("ph-wait"); waiting = true; }
-  }
-  // 写真本体は文書より後に届く(updatedAtも変わらない)ため、待ちが残る間は自前で取り直す
-  if (waiting && view.isConnected) {
-    setTimeout(() => { if (view.isConnected) fillThumbnails(view); }, 20000);
-  }
+  fillThumbs(view);
 }
 
 function openExtraModal(view, trip, day) {
