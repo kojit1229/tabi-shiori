@@ -1,0 +1,769 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="color-scheme" content="light">
+<meta name="robots" content="noindex,nofollow">
+<link rel="icon" href="data:,">
+<title>ハワイ島 家族旅のしおり</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@500;700;900&family=Noto+Sans+JP:wght@400;500;700&family=DM+Mono:wght@400;500&family=Pacifico&display=swap">
+<style>
+:root{color-scheme:light only;
+  --bg:#FFFFFF;        /* プルメリアの白〜砂 */
+  --paper:#FFFFFF;
+  --paper-2:#FAFAF8;
+  --ink:#1F1B19;       /* 溶岩の黒に近い茶 */
+  --ink-2:#5A5551;
+  --line:#E9E4DD;
+  --sea:#0FA3B1;       /* ラグーンの青緑 */
+  --sea-deep:#0A6E79;
+  --sea-soft:#E6F6F7;
+  --lava:#E8503F;      /* ハイビスカスの赤 */
+  --lava-soft:#FDE8E4;
+  --leaf:#3F9B5A;      /* ヤシの緑 */
+  --leaf-soft:#E7F4EA;
+  --sun:#F7C948;       /* プルメリアの黄 */
+  --sun-soft:#FFF4D6;
+  --shadow:0 6px 22px rgba(40,40,40,.07);
+}
+*{box-sizing:border-box}
+html{background:#FFFFFF}
+body{margin:0;background:var(--bg) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='48' height='48' viewBox='0 0 48 48'%3E%3Cpath d='M0 24 L12 12 L24 24 L12 36 Z M24 24 L36 12 L48 24 L36 36 Z' fill='%23000' fill-opacity='0.02'/%3E%3C/svg%3E");color:var(--ink);font-family:"Noto Sans JP",system-ui,-apple-system,sans-serif;line-height:1.7;padding-inline:16px;padding-block:0 64px}
+.wrap{max-width:760px;margin:0 auto}
+h1,h2,h3{font-family:"Zen Maru Gothic","Noto Sans JP",sans-serif;text-wrap:balance;margin:0}
+.mono{font-family:"DM Mono",ui-monospace,monospace;font-variant-numeric:tabular-nums}
+
+.cover{padding-block:44px 30px;position:relative;overflow:hidden;background:linear-gradient(160deg,var(--sun-soft),var(--paper) 50%,var(--sea-soft));border:1px solid var(--line);border-radius:0 0 28px 28px;padding-inline:22px;margin-inline:-6px}
+.cover .aloha{font-family:"Pacifico",cursive;color:var(--lava);font-size:1.9rem;line-height:1;margin-bottom:6px}
+.cover .eyebrow{font-size:.75rem;letter-spacing:.2em;color:var(--sea-deep);font-weight:700;text-transform:uppercase}
+.cover h1{font-size:clamp(2rem,6vw,3rem);font-weight:900;line-height:1.25;margin-top:8px}
+.cover h1 span{color:var(--lava)}
+.cover p.lead{color:var(--ink-2);margin:12px 0 0;max-width:34em}
+.facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin-top:24px}
+.fact{background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:12px 14px;backdrop-filter:blur(2px)}
+.fact .k{font-size:.72rem;letter-spacing:.12em;color:var(--sea-deep);font-weight:700}
+.fact .v{font-family:"Zen Maru Gothic",sans-serif;font-weight:700;font-size:1.05rem;margin-top:2px}
+.wave{position:absolute;right:-10px;top:-10px;width:220px;height:220px;pointer-events:none;opacity:.9}
+.hibi{position:absolute;right:14px;bottom:-18px;font-size:5.5rem;opacity:.16;pointer-events:none;transform:rotate(-12deg)}
+
+.daynav{display:flex;gap:8px;overflow-x:auto;padding-block:18px;scrollbar-width:none;position:sticky;top:0;background:var(--bg);z-index:2}
+.daynav::-webkit-scrollbar{display:none}
+.daynav a{flex:0 0 auto;text-decoration:none;color:var(--ink);background:var(--paper);border:1px solid var(--line);border-radius:999px;padding:6px 14px;font-size:.85rem;font-weight:700;display:flex;align-items:center;gap:6px}
+.daynav a:hover,.daynav a:focus-visible{border-color:var(--sea);outline:none;color:var(--sea-deep)}
+.daynav a.main{border-color:var(--lava);color:var(--lava);background:var(--lava-soft)}
+
+.day{background:var(--paper);border:1px solid var(--line);border-radius:22px;padding:22px 20px;margin-top:20px;box-shadow:var(--shadow);scroll-margin-top:110px;position:relative;overflow:hidden}
+.day::before{content:"";position:absolute;left:0;top:0;right:0;height:6px;background:linear-gradient(90deg,var(--sea),var(--leaf),var(--sun))}
+.day.main::before{background:linear-gradient(90deg,var(--lava),var(--sun))}
+.day.main{border-color:var(--lava)}
+.sec{scroll-margin-top:70px}
+.dayhead{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;border-bottom:1px dashed var(--line);padding-bottom:12px}
+.dayhead .date{font-size:1.6rem;font-weight:900;line-height:1;font-family:"Zen Maru Gothic",sans-serif}
+.dayhead .date small{font-size:.9rem;color:var(--ink-2);margin-left:4px;font-weight:700}
+.dayhead h2{font-size:1.15rem;font-weight:700;color:var(--sea-deep);flex:1 1 auto}
+.day.main .dayhead h2{color:var(--lava)}
+.tag{font-size:.72rem;font-weight:700;padding:3px 10px;border-radius:999px;background:var(--sea-soft);color:var(--sea-deep);letter-spacing:.06em}
+.tag.hot{background:var(--lava-soft);color:var(--lava)}
+.tag.green{background:var(--leaf-soft);color:var(--leaf)}
+
+.tl{list-style:none;margin:14px 0 0;padding:0;display:grid;gap:0}
+.tl > li{display:grid;grid-template-columns:72px 1fr;gap:14px;padding-block:10px}
+.tl .t{font-size:.82rem;color:var(--ink-2);font-weight:500;padding-top:3px;text-align:right}
+.tl .t.mono{font-size:.9rem;color:var(--sea-deep);font-weight:500}
+.tl .body{border-left:2px solid var(--line);padding-left:14px}
+.tl .ttl{color:var(--ink);font-weight:700;font-family:"Zen Maru Gothic",sans-serif;font-size:1.02rem}
+.tl .ttl .ico{margin-right:6px}
+.tl ul{margin:4px 0 0;padding-left:1.2em;color:var(--ink-2);font-size:.92rem}
+.tl .note{font-size:.88rem;color:var(--ink-2);margin:4px 0 0}
+.tl > .meal > .body{border-left-color:var(--lava)}
+.tl > .beach > .body{border-left-color:var(--leaf)}
+.tl > .move > .body{border-left-color:var(--sea)}
+.chip{display:inline-block;font-size:.72rem;font-weight:700;padding:1px 8px;border-radius:6px;background:var(--lava-soft);color:var(--lava);margin-left:6px;vertical-align:middle}
+.chip.alt{background:var(--sea-soft);color:var(--sea-deep)}
+
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;margin-top:28px}
+.box{background:var(--paper-2);border:1px solid var(--line);border-radius:16px;padding:18px 20px}
+.box h3{font-size:1rem;color:var(--sea-deep);margin-bottom:8px}
+.box{position:relative}
+.box.hi{background:linear-gradient(135deg,var(--sun-soft),var(--paper) 70%);border-color:var(--sun)}
+.box ul{margin:0;padding-left:1.2em;font-size:.93rem}
+.box li{margin-bottom:4px}
+.box.hi h3{color:var(--lava)}
+.tbl{width:100%;border-collapse:collapse;font-size:.9rem;margin-top:6px}
+.tbl th,.tbl td{text-align:left;padding:6px 4px;border-bottom:1px solid var(--line);vertical-align:top}
+.tbl th{font-weight:700;color:var(--ink-2);font-size:.78rem;letter-spacing:.06em}
+.tblwrap{overflow-x:auto}
+a.lnk{color:var(--sea-deep);text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:3px;font-weight:500}
+a.lnk:hover{color:var(--lava)}
+.links{display:flex;flex-wrap:wrap;gap:6px 12px;font-size:.8rem;margin-top:6px}
+.links a{color:var(--sea-deep);text-decoration:none;border:1px solid var(--line);border-radius:6px;padding:1px 8px;background:var(--sea-soft)}
+.links a:hover,.links a:focus-visible{border-color:var(--sea);outline:none}
+.go{font-size:.85rem;background:var(--sea-soft);color:var(--ink);border-radius:8px;padding:6px 10px;margin:6px 0 0}
+.go b{color:var(--sea-deep)}
+.warn{font-size:.85rem;background:var(--lava-soft);color:var(--ink);border-radius:8px;padding:6px 10px;margin:6px 0 0}
+.warn b{color:var(--lava)}
+.box.warnbox{border-color:var(--lava)}
+.box.warnbox h3{color:var(--lava)}
+.sec{margin-top:28px}
+.sec h2{font-size:1.25rem;color:var(--sea-deep);margin-bottom:6px;display:flex;align-items:center;gap:8px}
+.sec h2::after{content:"";flex:1;height:2px;background:linear-gradient(90deg,var(--sun),transparent);border-radius:2px}
+.sec p.intro{color:var(--ink-2);font-size:.92rem;margin:0 0 10px}
+.mapbox{background:var(--paper-2);border:1px solid var(--line);border-radius:16px;padding:14px;box-shadow:var(--shadow)}
+.mapbox svg{width:100%;height:auto;display:block;max-width:100%}
+.legend{display:flex;flex-wrap:wrap;gap:6px 14px;font-size:.82rem;margin-top:10px;color:var(--ink-2)}
+.legend span::before{content:"";display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:5px;vertical-align:-1px;background:var(--dot)}
+.apps{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px}
+.app{background:var(--paper-2);border:1px solid var(--line);border-radius:14px;padding:14px 16px}
+.app h3{font-size:1rem;margin-bottom:4px}
+.app .sub{font-size:.78rem;color:var(--ink-2);font-weight:700;letter-spacing:.04em}
+.app ul{margin:6px 0 0;padding-left:1.1em;font-size:.88rem}
+.app li{margin-bottom:3px}
+.app.best{border-color:var(--sun);border-width:2px;background:linear-gradient(180deg,var(--sun-soft),var(--paper) 40%)}
+
+.tabs{display:flex;gap:8px;overflow-x:auto;position:sticky;top:0;z-index:5;background:var(--bg);padding-block:12px 10px;scrollbar-width:none}
+.tabs::-webkit-scrollbar{display:none}
+.tabs button{flex:0 0 auto;font:inherit;font-weight:700;font-size:.9rem;color:var(--ink-2);background:var(--paper-2);border:1px solid var(--line);padding:7px 14px;cursor:pointer;border-radius:999px;font-family:"Zen Maru Gothic",sans-serif;transition:background .15s,color .15s}
+.tabs button[aria-selected="true"]{color:#25211F;background:var(--sun);border-color:var(--sun);box-shadow:0 3px 10px rgba(247,201,72,.35)}
+.tabs button:hover{border-color:var(--sea)}
+.tabs button:focus-visible{outline:2px solid var(--sea);outline-offset:2px}
+.tab[hidden]{display:none}
+.daynav{top:56px}
+.tlabel{font-size:.8rem;font-weight:700;color:var(--ink-2);margin:6px 0 2px;letter-spacing:.06em}
+.tbl.bus{font-size:.8rem;font-variant-numeric:tabular-nums}
+.tbl.bus th{font-size:.7rem;line-height:1.25;padding:6px 3px}
+.tbl.bus td{padding:3px 4px;text-align:center}
+.tbl.bus .hl{background:var(--sea-soft);font-weight:700;color:var(--ink)}
+.cover{padding-block:32px 22px;border-bottom:0}
+.alt h3{font-size:1rem;color:var(--sea-deep);margin:14px 0 6px}
+.alt .box ul{font-size:.9rem}
+.qa{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:10px}
+.qa .q{background:var(--paper-2);border:1px solid var(--line);border-radius:14px;padding:12px 14px;font-size:.9rem}
+.qa .q b{display:block;color:var(--lava);margin-bottom:4px}
+.pl{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:10px}
+.pl .pc{background:var(--paper-2);border:1px solid var(--line);border-radius:14px;padding:12px 14px;font-size:.9rem}
+.pl .pc .nm{font-weight:700;font-family:"Zen Maru Gothic",sans-serif;font-size:1rem}
+.pl .pc .mt{font-size:.78rem;color:var(--ink-2);font-weight:700;letter-spacing:.04em}
+.pl .pc p{margin:4px 0 0;color:var(--ink-2);font-size:.86rem}
+footer{margin-top:36px;font-size:.8rem;color:var(--ink-2);text-align:center}
+footer .mahalo{font-family:"Pacifico",cursive;color:var(--sea-deep);font-size:1.4rem;display:block;margin-bottom:4px}
+@media (max-width:480px){
+  .tl > li{grid-template-columns:58px 1fr;gap:10px}
+  .day{padding:18px 14px}
+}
+</style>
+
+</head>
+<body>
+<div class="wrap">
+<noscript><div style="background:#E8503F;color:#fff;border-radius:12px;padding:14px 16px;margin:0 0 16px;font-size:14px;line-height:1.7;font-family:sans-serif">
+⚠️ <b>いまは簡易プレビュー表示です</b>(iPhone「ファイル」アプリ)。タブは動かず、全部の章が縦に並んで表示されます。読むだけならこのままで大丈夫です。<br>
+タブやリンクを使うには: 無料アプリ「<b>Documents by Readdle</b>」を入れて、その中から iCloud Drive → 旅行 → ハワイ島2026 → このファイルを開いてください(オフラインでも動きます)。
+</div></noscript>
+<header class="cover">
+  <svg class="wave" viewBox="0 0 220 220" aria-hidden="true"><circle cx="150" cy="70" r="46" fill="var(--sun)" opacity=".55"/><path d="M0 150 C40 130 60 170 100 150 C140 130 160 170 220 150 V220 H0 Z" fill="var(--sea)" opacity=".18"/><path d="M0 175 C40 155 60 195 100 175 C140 155 160 195 220 175 V220 H0 Z" fill="var(--sea)" opacity=".25"/></svg><div class="hibi">🌺</div>
+  <div class="aloha">Aloha!</div>
+  <div class="eyebrow">Hawaiʻi Island · Kings' Land by Hilton Grand Vacations</div>
+  <h1>ハワイ島 <span>5泊7日</span><br>家族旅のしおり</h1>
+  <p class="lead">2026年9月19日(土)〜25日(金)。東京発、コナ空港へ。宿はヒルトンのキングスランド(キッチン付きの部屋)に5泊、遊ぶのは無料シャトルで行く本館ヒルトン・ワイコロア・ビレッジ。毎日むりに動かず、ビーチ・プール・イルカを楽しむ「ゆっくり旅」です。</p>
+  <div class="facts">
+    <div class="fact"><div class="k">出発</div><div class="v">9/19(土) 東京</div></div>
+    <div class="fact"><div class="k">現地到着</div><div class="v mono">9/19 13:19 コナ空港</div></div>
+    <div class="fact"><div class="k">帰りの便</div><div class="v mono">9/24 14:10 コナ発</div></div>
+    <div class="fact"><div class="k">宿</div><div class="v"><a class="lnk" href="https://www.hilton.com/en/hotels/koaklgv-hilton-grand-vacations-club-kings-land-waikoloa/" target="_blank" rel="noopener">Kings' Land(キングスランド)</a></div></div>
+    <div class="fact"><div class="k">遊ぶ本館</div><div class="v"><a class="lnk" href="https://www.hilton.com/en/hotels/koahwhh-hilton-waikoloa-village/" target="_blank" rel="noopener">Hilton Waikoloa Village</a><br><small style="font-weight:500;color:var(--ink-2)">無料シャトルで5分</small></div></div>
+    <div class="fact"><div class="k">時差</div><div class="v">日本より19時間おそい</div></div>
+    <div class="fact"><div class="k">空港⇄ホテル</div><div class="v">タクシーで約30分</div></div>
+  </div>
+</header>
+
+<nav class="tabs" role="tablist" aria-label="しおりの章">
+  <button role="tab" id="tb-plan" aria-selected="true" aria-controls="tab-plan" data-tab="plan">📅 旅程</button>
+  <button role="tab" id="tb-map" aria-selected="false" aria-controls="tab-map" data-tab="map">🗺️ 地図</button>
+  <button role="tab" id="tb-stay" aria-selected="false" aria-controls="tab-stay" data-tab="stay">🚌 宿・移動</button>
+  <button role="tab" id="tb-eat" aria-selected="false" aria-controls="tab-eat" data-tab="eat">🍽️ お店</button>
+  <button role="tab" id="tb-alt" aria-selected="false" aria-controls="tab-alt" data-tab="alt">🔄 代替案</button>
+  <button role="tab" id="tb-memo" aria-selected="false" aria-controls="tab-memo" data-tab="memo">📝 メモ</button>
+</nav>
+<div class="tab" id="tab-plan" role="tabpanel" aria-labelledby="tb-plan"><noscript><h2 style="font-family:sans-serif;color:#0A6E79;border-top:3px solid #F7C948;padding-top:14px;margin:28px 0 8px">📅 旅程</h2></noscript>
+<nav class="daynav" aria-label="日付">
+  <a href="#d19">🌺 9/19 到着</a>
+  <a href="#d20">🐬 9/20 イルカ</a>
+  <a href="#d21">🌴 9/21 コナ</a>
+  <a href="#d22" class="main">🌅 9/22 メイン</a>
+  <a href="#d23">🐢 9/23 A-Bay</a>
+  <a href="#d24">✈️ 9/24 帰国</a>
+</nav>
+
+<section class="day" id="d19">
+  <div class="dayhead">
+    <div class="date">9/19<small>土</small></div>
+    <h2>🌺 到着日 — ホテルをひとまわり</h2>
+    <span class="tag">移動日</span>
+  </div>
+  <ol class="tl">
+    <li class="move"><div class="t mono">13:19</div><div class="body"><div class="ttl"><span class="ico">🛬</span>コナ空港(KOA)到着</div><p class="note">入国後、タクシーでホテルへ(約30分・20マイル)。</p><p class="go"><b>移動:</b> 到着口(手荷物受取A/B前)のタクシー乗り場から。目安70〜110ドル+チップ。Uber/Lyftも空港には多い(専用乗り場あり)。事前予約なら SpeediShuttle が確実。</p><div class="links"><a href="https://www.hilton.com/en/hotels/koahwhh-hilton-waikoloa-village/hotel-location/" target="_blank" rel="noopener">ヒルトン公式 アクセス</a><a href="https://www.speedishuttle.com/hilton-waikoloa-village-shuttle" target="_blank" rel="noopener">SpeediShuttle(事前予約)</a><a href="https://unchartedlens.com/routes/usa/kona-airport-to-waikoloa-transportation/" target="_blank" rel="noopener">空港→ホテル 移動ガイド</a><a href="https://www.google.com/maps/dir/Kona+International+Airport/Hilton+Waikoloa+Village" target="_blank" rel="noopener">地図</a></div></div></li>
+    <li><div class="t">午後</div><div class="body"><div class="ttl"><span class="ico">🏨</span>キングスランドに到着 → 無料シャトルで本館へ</div><p class="warn"><b>注意:</b> チェックインは通常16:00から。早く着いたら荷物をフロントに預け、水着と着替えを手荷物にしておいて本館へ。</p>
+      <ul><li>モノレール(トラム)に乗る</li><li>ボートに乗る</li><li>ラグーンで魚探し</li><li>A-Bay(アナエホオマル湾)を少し散歩</li></ul><p class="go"><b>A-Bayへの行き方:</b> ホテルの南隣、マリオットの前のビーチ。徒歩だと海沿いの道で20分ほど。キングスランドからは<b>無料シャトル</b>でKings' Shopsまで乗り、そこから徒歩10分。本館からなら海沿いを徒歩20分。</p><div class="links"><a href="https://www.hilton.com/en/hotels/koahwhh-hilton-waikoloa-village/island-experiences/" target="_blank" rel="noopener">ホテル内の遊び(公式)</a><a href="https://www.google.com/maps/search/?api=1&query=Anaehoomalu+Bay+Beach+Waikoloa" target="_blank" rel="noopener">A-Bay 地図</a></div></div></li>
+    <li class="meal"><div class="t">夕食</div><div class="body"><div class="ttl"><span class="ico">🍔</span>A-Bay's Island Grill</div><p class="note">Kings' Shops内。朝7:30〜深夜まで通し営業、家族向け。気楽にすませて早めに就寝。</p><p class="go"><b>行き方:</b> キングスランドから無料シャトルでKings' Shopsへ(車で数分)。</p><div class="links"><a href="https://www.a-bays.com/" target="_blank" rel="noopener">公式</a><a href="https://www.opentable.com/r/a-bays-island-grill-waikoloa" target="_blank" rel="noopener">予約(OpenTable)</a><a href="https://www.google.com/maps/search/?api=1&query=A-Bay%27s+Island+Grill+Kings+Shops+Waikoloa" target="_blank" rel="noopener">地図</a></div></div></li>
+  </ol>
+</section>
+
+<section class="day" id="d20">
+  <div class="dayhead">
+    <div class="date">9/20<small>日</small></div>
+    <h2>🐬 ホテル満喫 & ドルフィンクエストの日</h2>
+    <span class="tag">移動なし</span>
+  </div>
+  <ol class="tl">
+    <li class="meal"><div class="t">朝食</div><div class="body"><div class="ttl"><span class="ico">🥞</span>Kona Biscuit Company <span class="chip alt">Queens' MarketPlace内・7:00〜14:00</span></div><p class="warn"><b>注意:</b> 候補だった Hawaiian Style Cafe はワイメア(内陸の町)にあり、ホテルから車で30分以上。今日は移動なしの日なので、ホテルから近い Kona Biscuit を本命にするのがおすすめ。</p><p class="go"><b>行き方:</b> 無料シャトルでQueens' MarketPlaceへ。シャトルの始発が遅い日は、部屋のキッチンで軽く食べてから出るのも手。</p><div class="links"><a href="https://konabiscuitco.com/" target="_blank" rel="noopener">Kona Biscuit 公式</a><a href="https://konabiscuitco.com/breakfast-and-brunch-menu/" target="_blank" rel="noopener">メニュー</a><a href="https://www.google.com/maps/search/?api=1&query=Kona+Biscuit+Company+Queens+Marketplace+Waikoloa" target="_blank" rel="noopener">地図</a><a href="https://bigislandguide.com/hawaiian-style-cafe" target="_blank" rel="noopener">Hawaiian Style Cafe(ワイメア)</a></div></div></li>
+    <li class="beach"><div class="t">午前</div><div class="body"><div class="ttl"><span class="ico">🏖️</span>A-Bay</div><ul><li>砂遊び</li><li>水遊び</li><li>ヤシの木の下で休憩</li></ul></div></li>
+    <li><div class="t">昼</div><div class="body"><div class="ttl"><span class="ico">🏊</span>ホテルへ戻ってプール → 昼寝タイム</div></div></li>
+    <li><div class="t mono">16:00</div><div class="body"><div class="ttl"><span class="ico">🐬</span>ドルフィンクエスト(15分プログラム)<span class="chip">予約</span></div><p class="warn"><b>確認:</b> プログラムごとに子どもの年齢下限がある(幼児向けは保護者同伴が条件)。予約時に対象年齢と、当日の集合時刻(開始の何分前か)を確認しておく。</p><p class="note">終わったあともイルカを眺めたり、ホテル内を散策したりしてゆっくり。</p><p class="go"><b>集合場所:</b> ホテル内のイルカのラグーンを囲む茶色い建物。メインロビーからチェックインデスクを左へ、ショップの並ぶ通路を進み、Konaプール方面へ。サイの像のところにエレベーター。ロビーから歩くと15〜20分。<b>キングスランドからはシャトル+徒歩で45分前に出発</b>。</p><div class="links"><a href="https://dolphinquest.com/big-island-hawaii/" target="_blank" rel="noopener">Dolphin Quest 公式</a><a href="https://www.tripadvisor.com/Attraction_Review-g60608-d126657-Reviews-Dolphin_Quest-Waikoloa_Kohala_Coast_Island_of_Hawaii_Hawaii.html" target="_blank" rel="noopener">口コミ(Tripadvisor)</a></div></div></li>
+    <li class="meal"><div class="t">夕食</div><div class="body"><div class="ttl"><span class="ico">🍝</span>Pueo's Osteria</div><p class="note">ワイコロア・ビレッジ(山側の住宅地)のイタリアン。</p><p class="warn"><b>注意:</b> ホテルから約10km・車で15分。<b>徒歩やシャトルでは行けない</b>。行きは配車アプリかタクシー(フロントに手配を頼む)。帰りの車がつかまりにくいので、店に帰りのタクシーを呼んでもらうか、往復で予約しておく。</p><div class="links"><a href="https://pueososteria.com/" target="_blank" rel="noopener">公式</a><a href="https://www.opentable.com/r/pueos-osteria-waikoloa" target="_blank" rel="noopener">予約(OpenTable)</a><a href="https://www.google.com/maps/dir/Hilton+Waikoloa+Village/Pueo%27s+Osteria+Waikoloa+Village" target="_blank" rel="noopener">地図</a></div></div></li>
+  </ol>
+</section>
+
+<section class="day" id="d21">
+  <div class="dayhead">
+    <div class="date">9/21<small>月</small></div>
+    <h2>🌴 コナ観光の日</h2>
+    <span class="tag">タクシー移動</span>
+  </div>
+  <ol class="tl">
+    <li class="move"><div class="t">朝</div><div class="body"><div class="ttl"><span class="ico">🚕</span>コナ(カイルア・コナ)へ</div><p class="go"><b>移動:</b> 南へ約30マイル(45km)、車で40〜50分。路線バス(Hele-On)は本数が少なく子連れ向きでない。<b>タクシーか配車アプリ</b>。片道80〜120ドルが目安なので、フロントで往復のタクシーを頼むか、この日だけホテル内のレンタカー窓口(National)で借りるのも手。</p><div class="links"><a href="https://www.google.com/maps/dir/Hilton+Waikoloa+Village/Alii+Drive+Kailua-Kona" target="_blank" rel="noopener">地図(ホテル→アリイ・ドライブ)</a><a href="https://www.shakaguide.com/article/planyourtrip/hawaii-uber-and-lyft-guide" target="_blank" rel="noopener">配車アプリ事情</a></div></div></li>
+    <li><div class="t">午前〜午後</div><div class="body"><div class="ttl"><span class="ico">🛍️</span>町歩き</div><ul><li>アリイ・ドライブ(海沿いの目抜き通り。店・教会・史跡がまとまっている)</li><li>港周辺を散歩(カイルア桟橋)</li><li>お土産</li><li>シェイブアイス</li></ul><div class="links"><a href="https://en.wikipedia.org/wiki/Ali%CA%BBi_Drive" target="_blank" rel="noopener">アリイ・ドライブとは</a><a href="https://www.google.com/maps/search/?api=1&query=Alii+Drive+Kailua-Kona" target="_blank" rel="noopener">地図</a></div></div></li>
+    <li class="meal"><div class="t">ランチ</div><div class="body"><div class="ttl"><span class="ico">🌊</span>Huggo's On the Rocks</div><p class="note">アリイ・ドライブ南端、砂の上に席がある海辺の店。海を眺めながら、そのままゆっくり。</p><div class="links"><a href="https://www.huggosontherocks.com/" target="_blank" rel="noopener">公式</a><a href="https://www.opentable.com/r/huggos-on-the-rocks-kailua-kona" target="_blank" rel="noopener">予約(OpenTable)</a><a href="https://www.google.com/maps/search/?api=1&query=Huggo%27s+On+The+Rocks+Kailua-Kona" target="_blank" rel="noopener">地図</a></div></div></li>
+    <li><div class="t">夕方</div><div class="body"><div class="ttl"><span class="ico">🏨</span>ホテルへ戻る</div><p class="note">プールやホテル散策。</p><p class="go"><b>帰り:</b> コナ市街は配車アプリがつかまりやすい。夕方の渋滞前(16時ごろ)に出ると楽。</p></div></li>
+  </ol>
+</section>
+
+<section class="day main" id="d22">
+  <div class="dayhead">
+    <div class="date">9/22<small>火</small></div>
+    <h2>🌅 Mauna Lani Beach と メインディナーの日</h2>
+    <span class="tag hot">旅のハイライト</span>
+  </div>
+  <ol class="tl">
+    <li class="beach"><div class="t">午前</div><div class="body"><div class="ttl"><span class="ico">🏖️</span>Mauna Lani Beach</div><ul><li>砂遊び</li><li>浅瀬で水遊び</li><li>ウミガメ探し</li></ul><p class="warn"><b>この日の動き方:</b> 午前ビーチ→宿で休憩→夜ディナーだと、宿とマウナラニを2往復(タクシー4回)することになる。<b>おすすめは、この日だけレンタカー</b>(本館ロビーのNational窓口)か、ビーチのあと Mauna Lani Auberge のロビーやカフェで涼んでそのままディナーへ(帰りの1回だけタクシー)。</p><p class="note">ウミガメがいなくても、とても穏やかなビーチなので小さい子でも十分楽しめる。</p><p class="go"><b>移動:</b> ホテルから北へ車で約15分(マウナラニ・リゾート内)。タクシーか配車アプリで「Mauna Lani Auberge(旧Mauna Lani Bay Hotel)」まで。夜のCanoeHouseも同じ場所なので、フロントで往復を頼むと迷わない。<br><b>ビーチへの道:</b> 一般向けの駐車場は「Kalahuipua'a Historic Park」で、そこから海沿いの小道を徒歩15分。台数が少ないので車なら早めに。子連れ・ベビーカーは、ホテル前で降りてビーチへ向かう方が楽。</p><div class="links"><a href="https://www.hawaiibeaches.com/beach/mauna-lani-beach/" target="_blank" rel="noopener">ビーチ案内</a><a href="https://www.tripadvisor.co.nz/ShowTopic-g29217-i268-k6999903-Public_parking_and_access_at_Mauna_Lani-Island_of_Hawaii_Hawaii.html" target="_blank" rel="noopener">駐車・アクセスの口コミ</a><a href="https://www.google.com/maps/dir/Hilton+Waikoloa+Village/Mauna+Lani+Auberge+Resorts+Collection" target="_blank" rel="noopener">地図</a></div></div></li>
+    <li><div class="t">午後</div><div class="body"><div class="ttl"><span class="ico">😴</span>ホテルで少し休憩</div><p class="note">夜に備えて体力を残しておく。</p></div></li>
+    <li class="meal"><div class="t mono">17:30</div><div class="body"><div class="ttl"><span class="ico">🌅</span>CanoeHouse<span class="chip">予約済み 17:30</span></div><p class="note">旅行のメインディナー。ビーチで遊んだあとの夕暮れ時、海を眺めながら食事。「ハワイ島らしい一日」の締めくくり。</p><p class="go"><b>場所:</b> Mauna Lani Auberge の海沿い(住所 68-1400 Mauna Lani Dr)。営業 17:00〜21:00。服装は「リゾートカジュアル」(襟付きシャツやワンピース程度。ビーチサンダル・水着は避ける)。子ども歓迎。電話 (808) 796-3990。<br><b>帰り:</b> 夜はこの辺りで配車アプリがつかまりにくい。<b>予約時か到着時に帰りのタクシーを店に頼んでおく</b>。</p><div class="links"><a href="https://auberge.com/mauna-lani/dine/canoe-house/" target="_blank" rel="noopener">公式</a><a href="https://auberge.com/mauna-lani/canoe-house/dinner/" target="_blank" rel="noopener">ディナーメニュー</a><a href="https://www.opentable.com/r/canoehouse-kamuela" target="_blank" rel="noopener">OpenTable</a><a href="https://www.google.com/maps/search/?api=1&query=CanoeHouse+Mauna+Lani" target="_blank" rel="noopener">地図</a></div></div></li>
+  </ol>
+</section>
+
+<section class="day" id="d23">
+  <div class="dayhead">
+    <div class="date">9/23<small>水</small></div>
+    <h2>🐢 A-Bayでもう一度遊ぶ日</h2>
+    <span class="tag green">最後のビーチ</span>
+  </div>
+  <ol class="tl">
+    <li class="meal"><div class="t">朝食</div><div class="body"><div class="ttl"><span class="ico">☕</span>Kona Biscuit Company <span class="chip alt">または Island Vintage Coffee</span></div><p class="go"><b>どちらもリゾート内:</b> Kona Biscuit は Queens' MarketPlace、Island Vintage Coffee は Kings' Shops(朝6時から)。無料シャトルでショップまで行き、朝食のあと徒歩10分でA-Bayへ。</p><div class="links"><a href="https://konabiscuitco.com/" target="_blank" rel="noopener">Kona Biscuit</a><a href="https://www.islandvintagecoffee.com/pages/locations" target="_blank" rel="noopener">Island Vintage Coffee 店舗一覧</a><a href="https://kingsshops.com/" target="_blank" rel="noopener">Kings' Shops</a><a href="https://www.queensmarketplace.com/" target="_blank" rel="noopener">Queens' MarketPlace</a></div></div></li>
+    <li class="beach"><div class="t">午前</div><div class="body"><div class="ttl"><span class="ico">🏖️</span>A-Bay</div><ul><li>最後の砂遊び</li><li>浅瀬遊び</li></ul></div></li>
+    <li class="beach"><div class="t mono">17:00頃</div><div class="body"><div class="ttl"><span class="ico">🐢</span>ウミガメ探し</div><p class="note">A-Bayは夕方の方が会いやすいことがある。「今日もいるかな?」と探すのが楽しい。</p></div></li>
+    <li><div class="t">夜</div><div class="body"><div class="ttl"><span class="ico">🎁</span>お土産 → 最後のプール</div><p class="note">お土産はKings' Shops / Queens' MarketPlace(どちらも夜まで営業)で。夕食はテイクアウトでもOK。荷造りも少しずつ。</p><div class="links"><a href="https://www.queensmarketplace.com/center-info/" target="_blank" rel="noopener">Queens' MarketPlace 店舗案内</a><a href="https://order.toasttab.com/online/a-bays-island-grill-69-250-waikoloa-beach-dr-j-106" target="_blank" rel="noopener">A-Bay's テイクアウト注文</a></div></div></li>
+  </ol>
+</section>
+
+<section class="day" id="d24">
+  <div class="dayhead">
+    <div class="date">9/24<small>木</small></div>
+    <h2>✈️ 帰国の日</h2>
+    <span class="tag">移動日</span>
+  </div>
+  <ol class="tl">
+    <li><div class="t">朝</div><div class="body"><div class="ttl"><span class="ico">🚶</span>朝の散歩 → チェックアウト</div><p class="note">忘れ物チェック(充電器・水着・お土産)。キッチンの食べ残しも片付ける。</p></div></li>
+    <li class="move"><div class="t">昼前</div><div class="body"><div class="ttl"><span class="ico">🚕</span>空港へ(約30分)</div><p class="go"><b>手配:</b> 前日までにフロントでタクシーか holoholo(予約可)か SpeediShuttle を予約。チェックアウトは10:00。国際線なので出発3時間前(11:00ごろ)には宿を出る。チェックアウト後〜出発までは宿のロビーかプールサイドで待てる。</p></div></li>
+    <li class="move"><div class="t mono">14:10</div><div class="body"><div class="ttl"><span class="ico">🛫</span>コナ空港 発</div><p class="note">日付をまたいで 9/25(金) 東京着。</p></div></li>
+  </ol>
+</section>
+
+<div class="grid2" style="margin-top:20px">
+  <div class="box hi">
+    <h3>✨ このプランのいいところ</h3>
+    <ul>
+      <li>🌺 毎日移動しすぎない</li>
+      <li>🐬 ドルフィンクエストの日はホテルだけで完結</li>
+      <li>🏖️ A-Bayは2回行くので、カメに会えなくても翌日にもう一度チャレンジできる</li>
+      <li>🐢 Mauna Lani Beachでもカメに会える可能性あり</li>
+      <li>🍝 行きたいレストランは全部入っている</li>
+    </ul>
+  </div>
+
+</div>
+</div>
+<div class="tab" id="tab-map" role="tabpanel" aria-labelledby="tb-map"><noscript><h2 style="font-family:sans-serif;color:#0A6E79;border-top:3px solid #F7C948;padding-top:14px;margin:28px 0 8px">🗺️ 地図</h2></noscript>
+<section class="sec" id="map">
+  <h2>🗺️ ハワイ島の地図と行き先</h2>
+  <p class="intro">宿(赤)を真ん中に、行く場所だけを置いた地図。島は四国の半分くらいの大きさで、宿は島の西側「コハラ海岸」にあります。</p>
+  <div class="mapbox"><svg viewBox="0 0 840 760" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="ハワイ島の地図と行き先">
+<rect width="840" height="760" fill="var(--sea-soft)" rx="12"/>
+<polygon points="254.8,26.0 296.4,41.6 348.4,88.4 426.4,98.8 530.4,140.4 634.4,218.4 686.4,306.8 722.8,364.0 811.2,416.0 764.4,478.4 686.4,530.4 556.4,556.4 452.4,618.8 358.8,733.2 270.4,660.4 234.0,530.4 213.2,436.8 192.4,353.6 166.4,301.6 202.8,244.4 244.4,202.8 254.8,166.4 280.8,145.6 260.0,88.4" fill="var(--bg)" stroke="var(--sea)" stroke-width="2"/>
+<path d="M461.0,265.0 L468.0,253.0 L475.0,265.0 Z" fill="none" stroke="var(--ink-2)" stroke-width="1.5"/><text x="468.0" y="278.0" text-anchor="middle" font-size="11" fill="var(--ink-2)">マウナケア 4,207m</text>
+<path d="M393.4,447.0 L400.4,435.0 L407.4,447.0 Z" fill="none" stroke="var(--ink-2)" stroke-width="1.5"/><text x="400.4" y="460.0" text-anchor="middle" font-size="11" fill="var(--ink-2)">マウナロア</text>
+<path d="M554.6,478.2 L561.6,466.2 L568.6,478.2 Z" fill="none" stroke="var(--ink-2)" stroke-width="1.5"/><text x="561.6" y="491.2" text-anchor="middle" font-size="11" fill="var(--ink-2)">キラウエア火山</text>
+<path d="M169.0,302.1 L249.6,202.8 L260.0,176.8" fill="none" stroke="var(--lava)" stroke-width="3" stroke-dasharray="6 5"/>
+<path d="M249.6,202.8 L197.6,353.6" fill="none" stroke="var(--lava)" stroke-width="3" stroke-dasharray="6 5"/>
+<path d="M249.6,202.8 L301.6,197.6" fill="none" stroke="var(--lava)" stroke-width="3" stroke-dasharray="6 5"/>
+<circle cx="249.6" cy="202.8" r="9" fill="var(--lava)" stroke="var(--paper)" stroke-width="2"/><text x="237.6" y="190.8" text-anchor="end" font-size="13" font-weight="700" fill="var(--ink)">ワイコロア(宿・本館・A-Bay)</text>
+<circle cx="260.0" cy="176.8" r="6" fill="var(--leaf)" stroke="var(--paper)" stroke-width="2"/><text x="272.0" y="172.8" text-anchor="start" font-size="13" font-weight="700" fill="var(--ink)">マウナラニ(ビーチ・CanoeHouse)</text>
+<circle cx="301.6" cy="197.6" r="6" fill="var(--sea)" stroke="var(--paper)" stroke-width="2"/><text x="313.6" y="211.6" text-anchor="start" font-size="13" font-weight="700" fill="var(--ink)">ワイコロア・ビレッジ(Pueo's)</text>
+<circle cx="169.0" cy="302.1" r="6" fill="var(--sea)" stroke="var(--paper)" stroke-width="2"/><text x="157.0" y="306.1" text-anchor="end" font-size="13" font-weight="700" fill="var(--ink)">コナ空港</text>
+<circle cx="197.6" cy="353.6" r="6" fill="var(--sea)" stroke="var(--paper)" stroke-width="2"/><text x="209.6" y="357.6" text-anchor="start" font-size="13" font-weight="700" fill="var(--ink)">カイルア・コナ(町歩き・Huggo's)</text>
+<circle cx="369.2" cy="156.0" r="5" fill="var(--ink-2)" stroke="var(--paper)" stroke-width="2"/><text x="379.2" y="150.0" text-anchor="start" font-size="13" font-weight="700" fill="var(--ink)">ワイメア(Hawaiian Style Cafe・遠い)</text>
+<circle cx="665.6" cy="312.0" r="5" fill="var(--ink-2)" stroke="var(--paper)" stroke-width="2"/><text x="655.6" y="304.0" text-anchor="end" font-size="13" font-weight="700" fill="var(--ink)">ヒロ(今回は行かない)</text>
+<g font-size="12" fill="var(--ink-2)"><text x="150.0" y="740">点線=この旅で車で動く道。宿→空港 約30分 / 宿→コナの町 約45分 / 宿→マウナラニ・Pueo's 各15分</text></g>
+<g transform="translate(600,40)"><path d="M130.0,30 L130.0,0 M-6,8 L130.0,0 L136.0,8" stroke="var(--ink)" stroke-width="2" fill="none"/><text x="130.0" y="48" text-anchor="middle" font-size="12" fill="var(--ink)">北</text></g>
+</svg>
+    <div class="legend"><span style="--dot:var(--lava)">宿・A-Bay</span><span style="--dot:var(--leaf)">ビーチ・メインディナー</span><span style="--dot:var(--sea)">空港・町・レストラン</span><span style="--dot:var(--ink-2)">参考(行かない)</span></div>
+  </div>
+  <div class="mapbox" style="margin-top:12px"><svg viewBox="0 0 700 300" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="ワイコロア周辺の位置関係">
+<rect width="700" height="300" fill="var(--paper)" rx="12"/>
+<text x="20" y="28" font-size="13" font-weight="700" fill="var(--ink-2)">拡大: 宿のまわり(南←→北)。太い線=海沿いの幹線道路19号</text>
+<line x1="40" y1="150" x2="660" y2="150" stroke="var(--ink-2)" stroke-width="5" stroke-linecap="round"/>
+<text x="40" y="140" font-size="11" fill="var(--ink-2)">南(コナ方面)</text><text x="660" y="140" text-anchor="end" font-size="11" fill="var(--ink-2)">北(ワイメア方面)</text>
+<g><circle cx="90" cy="150" r="8" fill="var(--sea)"/><text x="90" y="180" text-anchor="middle" font-size="12" font-weight="700" fill="var(--ink)">コナ空港</text><text x="90" y="196" text-anchor="middle" font-size="11" fill="var(--ink-2)">車30分→</text></g>
+<g><rect x="250" y="80" width="200" height="140" rx="12" fill="var(--sea-soft)" stroke="var(--sea)"/>
+<text x="350" y="100" text-anchor="middle" font-size="12" font-weight="700" fill="var(--sea)">ワイコロア・ビーチ・リゾート</text>
+<circle cx="290" cy="125" r="8" fill="var(--sea)"/><text x="290" y="150" text-anchor="middle" font-size="12" font-weight="700" fill="var(--ink)">本館(遊ぶ所)</text>
+<circle cx="330" cy="195" r="9" fill="var(--lava)"/><text x="330" y="218" text-anchor="middle" font-size="12" font-weight="700" fill="var(--ink)">キングスランド(宿)</text>
+<circle cx="400" cy="125" r="7" fill="var(--sea)"/><text x="400" y="112" text-anchor="middle" font-size="11" fill="var(--ink)">Kings' / Queens'</text>
+<circle cx="400" cy="185" r="7" fill="var(--leaf)"/><text x="400" y="207" text-anchor="middle" font-size="11" fill="var(--ink)">A-Bay(マリオット前)</text>
+<text x="350" y="240" text-anchor="middle" font-size="11" fill="var(--ink-2)">枠の中は宿の無料シャトルで移動(各5分)</text></g>
+<g><line x1="450" y1="150" x2="560" y2="60" stroke="var(--ink-2)" stroke-width="3" stroke-dasharray="5 4"/><circle cx="560" cy="60" r="8" fill="var(--sea)"/><text x="575" y="56" font-size="12" font-weight="700" fill="var(--ink)">ワイコロア・ビレッジ</text><text x="575" y="72" font-size="11" fill="var(--ink-2)">Pueo's Osteria・山側へ車15分</text></g>
+<g><circle cx="600" cy="150" r="8" fill="var(--leaf)"/><text x="600" y="180" text-anchor="middle" font-size="12" font-weight="700" fill="var(--ink)">マウナラニ</text><text x="600" y="196" text-anchor="middle" font-size="11" fill="var(--ink-2)">ビーチ・CanoeHouse</text><text x="600" y="212" text-anchor="middle" font-size="11" fill="var(--ink-2)">←車15分</text></g>
+<text x="350" y="285" text-anchor="middle" font-size="11" fill="var(--ink-2)">カイルア・コナの町は空港よりさらに南。宿から車45分。</text>
+</svg></div>
+  <div class="links" style="margin-top:10px"><a href="https://www.google.com/maps/dir/Kona+International+Airport/Hilton+Waikoloa+Village/Mauna+Lani+Auberge+Resorts+Collection/Pueo%27s+Osteria+Waikoloa+Village/Alii+Drive+Kailua-Kona" target="_blank" rel="noopener">Googleマップで行き先を全部表示</a><a href="https://www.google.com/maps/search/?api=1&query=Hilton+Waikoloa+Village" target="_blank" rel="noopener">宿の地図</a></div>
+</section>
+
+<section class="sec" id="hotel">
+  <h2>🏨 本館の路線図と配置図</h2>
+  <p class="intro">泊まるのはキングスランドですが、ラグーン・プール・イルカはこの本館にあります。①は「どう動くか」の路線図、②は「何がどこにあるか」の配置図(右端にキングスランド)。どちらも公式地図をもとに描いた簡略図で、正確な配置は公式PDFで。</p>
+  <div class="mapbox"><svg viewBox="0 0 760 540" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="移動手段の路線図">
+<rect width="760" height="540" fill="var(--paper)" rx="12"/>
+<text x="20" y="30" font-size="14" font-weight="700" fill="var(--ink)">① 移動手段の路線図(宿 ⇄ 本館 ⇄ ショップ、本館の中のトラムとボート)</text>
+<!-- free shuttle loop (green) -->
+<path d="M90,430 L90,300 L250,300 L250,430 Z" fill="none" stroke="var(--leaf)" stroke-width="8" stroke-linejoin="round"/>
+<path d="M250,300 L420,300" fill="none" stroke="var(--leaf)" stroke-width="8"/>
+<!-- paid resort shuttle / walk (grey) -->
+<path d="M250,430 L420,430 L420,300" fill="none" stroke="var(--ink-2)" stroke-width="4" stroke-dasharray="10 7"/>
+<!-- tram line (orange) inside HWV -->
+<path d="M420,300 L470,160 M420,300 L560,300 L620,230 L680,140" fill="none" stroke="var(--lava)" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+<!-- boat loop (blue) -->
+<path d="M470,190 C520,150 620,160 640,210 C660,260 560,290 480,250 C450,235 445,215 470,190 Z" fill="none" stroke="var(--sea)" stroke-width="5"/>
+<!-- stations -->
+<g font-size="12" fill="var(--ink)">
+<g><circle cx="90" cy="430" r="13" fill="var(--lava)" stroke="var(--paper)" stroke-width="3"/><text x="90" y="465" text-anchor="middle" font-weight="900" font-size="13">キングスランド(宿)</text><text x="90" y="481" text-anchor="middle" font-size="11" fill="var(--ink-2)">無料シャトルの起点</text></g>
+<g><circle cx="90" cy="300" r="9" fill="var(--paper)" stroke="var(--leaf)" stroke-width="4"/><text x="90" y="280" text-anchor="middle" font-weight="700">Kings' Shops</text><text x="90" y="264" text-anchor="middle" font-size="11" fill="var(--ink-2)">A-Bay's・Island Vintage</text><text x="90" y="248" text-anchor="middle" font-size="11" fill="var(--ink-2)">A-Bayまで徒歩10分</text></g>
+<g><circle cx="250" cy="300" r="9" fill="var(--paper)" stroke="var(--leaf)" stroke-width="4"/><text x="250" y="280" text-anchor="middle" font-weight="700">Queens' MarketPlace</text><text x="250" y="264" text-anchor="middle" font-size="11" fill="var(--ink-2)">Kona Biscuit・食料品店</text></g>
+<g><circle cx="250" cy="430" r="7" fill="var(--paper)" stroke="var(--ink-2)" stroke-width="3"/><text x="250" y="458" text-anchor="middle" font-size="11" fill="var(--ink-2)">(道路沿い・徒歩20分)</text></g>
+<g><circle cx="420" cy="300" r="13" fill="var(--paper)" stroke="var(--lava)" stroke-width="5"/><text x="420" y="335" text-anchor="middle" font-weight="900" font-size="13">本館 下のロビー</text><text x="420" y="351" text-anchor="middle" font-size="11" fill="var(--ink-2)">シャトル・タクシー乗り場</text><text x="420" y="367" text-anchor="middle" font-size="11" fill="var(--ink-2)">階段を上がるとメインロビー=トラム②</text></g>
+<g><circle cx="470" cy="160" r="9" fill="var(--paper)" stroke="var(--lava)" stroke-width="4"/><text x="470" y="140" text-anchor="middle" font-weight="700">トラム① MAKAI</text><text x="470" y="124" text-anchor="middle" font-size="11" fill="var(--ink-2)">ラグーンタワー・Konaプール</text></g>
+<g><circle cx="560" cy="300" r="9" fill="var(--paper)" stroke="var(--lava)" stroke-width="4"/><text x="560" y="335" text-anchor="middle" font-weight="700">トラム③</text><text x="560" y="351" text-anchor="middle" font-size="11" fill="var(--ink-2)">コンベンション・朝食</text></g>
+<g><circle cx="620" cy="230" r="9" fill="var(--paper)" stroke="var(--lava)" stroke-width="4"/><text x="640" y="234" font-weight="700">トラム④ パレスタワー</text></g>
+<g><circle cx="680" cy="140" r="9" fill="var(--paper)" stroke="var(--lava)" stroke-width="4"/><text x="680" y="120" text-anchor="middle" font-weight="700">トラム⑤ オーシャンタワー</text><text x="680" y="104" text-anchor="middle" font-size="11" fill="var(--ink-2)">Kohalaプール</text></g>
+<g><rect x="505" y="205" width="16" height="12" rx="2" fill="var(--sea)"/><text x="530" y="200" font-size="11" fill="var(--sea)">ボート乗り場</text><text x="530" y="214" font-size="11" fill="var(--sea)">(ロビー側・グランド階段下)</text></g>
+<g><rect x="470" y="245" width="16" height="12" rx="2" fill="var(--sea)"/><text x="455" y="275" font-size="11" fill="var(--sea)">ボート乗り場(MAKAI側)</text></g>
+<g><rect x="628" y="180" width="16" height="12" rx="2" fill="var(--sea)"/><text x="650" y="190" font-size="11" fill="var(--sea)">ボート乗り場(パレス側)</text></g>
+<text x="575" y="60" text-anchor="middle" font-size="12" font-weight="700" fill="var(--sea)">🐬 イルカのラグーンはボート水路の内側(北)</text>
+<text x="575" y="78" text-anchor="middle" font-size="11" fill="var(--ink-2)">集合場所へはトラム①で降りて徒歩5分、またはロビーから徒歩15分</text>
+</g>
+<!-- legend -->
+<g font-size="12" fill="var(--ink)">
+<line x1="30" y1="505" x2="70" y2="505" stroke="var(--leaf)" stroke-width="8"/><text x="78" y="509">宿の無料シャトル(巡回・時刻表はフロント)</text>
+<line x1="330" y1="505" x2="370" y2="505" stroke="var(--ink-2)" stroke-width="4" stroke-dasharray="10 7"/><text x="378" y="509">有料シャトル(大人2ドル)か徒歩</text>
+<line x1="30" y1="527" x2="70" y2="527" stroke="var(--lava)" stroke-width="8"/><text x="78" y="531">トラム(モノレール)①〜⑤・無料・約10〜15分間隔</text>
+<line x1="330" y1="527" x2="370" y2="527" stroke="var(--sea)" stroke-width="5"/><text x="378" y="531">ボート(ラグーンの水路を巡回・無料)</text>
+</g>
+</svg></div>
+  <div class="mapbox" style="margin-top:12px"><svg viewBox="0 0 760 560" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="タワー・ラグーン・キングスランドの配置図">
+<rect width="760" height="560" fill="var(--leaf-soft)" rx="12"/>
+<text x="20" y="30" font-size="14" font-weight="700" fill="var(--ink)">② 配置図(本館の中とキングスランドの位置)</text>
+<!-- sea -->
+<path d="M0,50 H560 V100 Q450,150 300,140 Q200,130 180,80 Q150,50 0,50 Z" fill="var(--sea-soft)"/>
+<text x="470" y="75" font-size="12" fill="var(--sea)" font-weight="700">海(北)</text>
+<!-- lagoon -->
+<path d="M230,170 Q260,140 300,160 Q350,200 360,270 Q365,330 320,350 Q260,365 220,340 Q180,310 190,260 Q195,200 230,170 Z" fill="var(--sea-soft)" stroke="var(--sea)" stroke-width="1.5"/>
+<text x="275" y="262" text-anchor="middle" font-size="13" font-weight="700" fill="var(--sea)">ラグーン</text>
+<text x="275" y="280" text-anchor="middle" font-size="11" fill="var(--sea)">魚・カメ・ラグーンビーチ</text>
+<path d="M300,160 Q350,130 400,145 Q430,160 415,195 Q390,215 345,200 Q310,190 300,160 Z" fill="var(--sea-soft)" stroke="var(--sea)" stroke-width="1.5" stroke-dasharray="4 3"/>
+<text x="362" y="172" text-anchor="middle" font-size="12" font-weight="700" fill="var(--sea)">🐬 イルカのラグーン</text>
+<!-- MAKAI -->
+<rect x="70" y="140" width="130" height="120" rx="14" fill="var(--paper)" stroke="var(--ink-2)"/>
+<text x="135" y="168" text-anchor="middle" font-size="13" font-weight="700" fill="var(--ink)">MAKAI</text>
+<text x="135" y="184" text-anchor="middle" font-size="11" fill="var(--ink-2)">ラグーンタワー</text>
+<text x="135" y="206" text-anchor="middle" font-size="11" fill="var(--ink)">Konaプール・スライダー</text>
+<text x="135" y="222" text-anchor="middle" font-size="11" fill="var(--ink)">子ども砂プール</text>
+<text x="135" y="238" text-anchor="middle" font-size="11" fill="var(--ink)">Lagoon Grill・ショップ</text>
+<!-- OCEAN -->
+<rect x="440" y="150" width="130" height="120" rx="14" fill="var(--paper)" stroke="var(--ink-2)"/>
+<text x="505" y="178" text-anchor="middle" font-size="13" font-weight="700" fill="var(--ink)">OCEAN TOWER</text>
+<text x="505" y="194" text-anchor="middle" font-size="11" fill="var(--ink-2)">タイムシェア棟</text>
+<text x="505" y="216" text-anchor="middle" font-size="11" fill="var(--ink)">Kohalaプール・スライダー</text>
+<text x="505" y="232" text-anchor="middle" font-size="11" fill="var(--ink)">大人用プール</text>
+<text x="505" y="248" text-anchor="middle" font-size="11" fill="var(--ink)">Buddha Point(夕日)</text>
+<!-- PALACE -->
+<rect x="400" y="330" width="160" height="90" rx="14" fill="var(--paper)" stroke="var(--ink-2)"/>
+<text x="480" y="358" text-anchor="middle" font-size="13" font-weight="700" fill="var(--ink)">PALACE TOWER</text>
+<text x="480" y="378" text-anchor="middle" font-size="11" fill="var(--ink)">Nui Italian・チャペル</text>
+<text x="480" y="394" text-anchor="middle" font-size="11" fill="var(--ink)">Palace Garden</text>
+<!-- LOBBY -->
+<rect x="60" y="380" width="300" height="100" rx="14" fill="var(--paper)" stroke="var(--lava)" stroke-width="2"/>
+<text x="210" y="406" text-anchor="middle" font-size="13" font-weight="700" fill="var(--lava)">メインロビー・グランド・プロムナード</text>
+<text x="210" y="426" text-anchor="middle" font-size="11" fill="var(--ink)">フロント・コンシェルジュ・レンタカー・ATM</text>
+<text x="210" y="442" text-anchor="middle" font-size="11" fill="var(--ink)">Kona Tap Room・朝食ビュッフェ・KPC(崖の上)</text>
+<text x="210" y="458" text-anchor="middle" font-size="11" fill="var(--ink)">下のロビー=シャトル・タクシー乗り場</text>
+<text x="290" y="365" text-anchor="middle" font-size="11" fill="var(--ink-2)">グランド階段でラグーンへ</text>
+<rect x="15" y="380" width="35" height="120" rx="6" fill="var(--line)"/><text x="32" y="440" text-anchor="middle" font-size="10" fill="var(--ink-2)" transform="rotate(-90 32 440)">駐車場</text>
+<text x="20" y="520" font-size="11" fill="var(--ink-2)">↓ 道路(Waikoloa Beach Dr)へ出て東へ →</text>
+<!-- divider and Kings' Land inset -->
+<line x1="590" y1="50" x2="590" y2="540" stroke="var(--line)" stroke-width="2" stroke-dasharray="6 5"/>
+<text x="675" y="75" text-anchor="middle" font-size="12" font-weight="700" fill="var(--ink-2)">本館から東へ 2.4km</text>
+<text x="675" y="91" text-anchor="middle" font-size="11" fill="var(--ink-2)">(無料シャトル 5分)</text>
+<path d="M600,120 h150 v400 h-150 Z" fill="var(--leaf-soft)"/>
+<ellipse cx="675" cy="330" rx="70" ry="180" fill="#cfe6d3" stroke="var(--leaf)" stroke-dasharray="3 3"/>
+<text x="675" y="170" text-anchor="middle" font-size="11" fill="var(--leaf)">ゴルフ場</text>
+<text x="675" y="500" text-anchor="middle" font-size="11" fill="var(--leaf)">ゴルフ場</text>
+<rect x="615" y="250" width="120" height="160" rx="14" fill="var(--paper)" stroke="var(--lava)" stroke-width="3"/>
+<text x="675" y="280" text-anchor="middle" font-size="13" font-weight="900" fill="var(--lava)">キングスランド</text>
+<text x="675" y="296" text-anchor="middle" font-size="11" fill="var(--ink-2)">(宿)</text>
+<text x="675" y="320" text-anchor="middle" font-size="11" fill="var(--ink)">溶岩岩プール</text>
+<text x="675" y="336" text-anchor="middle" font-size="11" fill="var(--ink)">スライダー4本</text>
+<text x="675" y="352" text-anchor="middle" font-size="11" fill="var(--ink)">子ども/大人プール</text>
+<text x="675" y="368" text-anchor="middle" font-size="11" fill="var(--ink)">Bistro(8〜19時)</text>
+<text x="675" y="384" text-anchor="middle" font-size="11" fill="var(--ink)">ゲームルーム</text>
+<text x="675" y="400" text-anchor="middle" font-size="11" fill="var(--ink)">フロント=シャトル乗り場</text>
+<text x="675" y="440" text-anchor="middle" font-size="11" fill="var(--ink-2)">Kings' Shops は</text>
+<text x="675" y="455" text-anchor="middle" font-size="11" fill="var(--ink-2)">本館との間(車で数分)</text>
+</svg></div>
+  <div class="links" style="margin-top:10px"><a href="https://www.hwvtoursandactivities.com/files/Hilton_Waikoloa_Village_Resort_Map_EN_2024-07-05_opt.pdf" target="_blank" rel="noopener">公式リゾートマップ(PDF・英語)</a><a href="https://hwvdirectory.com/resort-map" target="_blank" rel="noopener">公式ゲスト案内の地図ページ</a><a href="https://www.hilton.com/en/hotels/koahwhh-hilton-waikoloa-village/" target="_blank" rel="noopener">ヒルトン公式</a></div>
+  <div class="grid2" style="margin-top:12px">
+    <div class="box"><h3>覚えておく場所</h3><ul>
+      <li><strong>下のロビー(Lower Lobby)</strong>: シャトルとタクシーの乗り場。外出はいつもここから</li>
+      <li><strong>イルカのラグーン</strong>: ロビーからラグーンの北側へ。茶色の建物の表側で受付。徒歩15〜20分</li>
+      <li><strong>Konaプール</strong>(MAKAI側): スライダーと子ども用の砂プール。子連れはこちら</li>
+      <li><strong>Kohalaプール</strong>(オーシャンタワー側): 大人用プールもあり、夕日はBuddha Point</li>
+      <li><strong>ラグーンビーチ</strong>: 波のない砂浜。魚もカメも入ってくる</li>
+    </ul></div>
+    <div class="box"><h3>ホテル連絡先</h3><ul>
+      <li>本館 電話: +1 808 886 1234</li><li>キングスランド 住所: 69-699 Waikoloa Beach Drive, Waikoloa, HI 96738(配車アプリの行き先はこちら)</li>
+      <li>SMS(チャット): +1 808 369 9870(名前と部屋番号を書く)</li>
+      <li>本館 住所: 69-425 Waikoloa Beach Drive, Waikoloa, HI 96738</li>
+    </ul></div>
+  </div>
+</section>
+
+</div>
+<div class="tab" id="tab-stay" role="tabpanel" aria-labelledby="tb-stay"><noscript><h2 style="font-family:sans-serif;color:#0A6E79;border-top:3px solid #F7C948;padding-top:14px;margin:28px 0 8px">🚌 宿・移動</h2></noscript>
+<section class="sec" id="stay">
+  <h2>🏡 宿: キングスランド(Kings' Land by Hilton Grand Vacations)</h2>
+  <p class="intro">本館から東へ約1.5マイル(2.4km)、ゴルフ場に囲まれたコンドミニアム型のリゾート。部屋にキッチン・洗濯機があり、家族連れ向き。</p>
+  <div class="grid2" style="margin-top:0">
+    <div class="box"><h3>ここでできること</h3><ul>
+      <li>溶岩岩のプール(スライダー4本)・子ども用プール・大人用プール・ジャグジー</li>
+      <li>Kings' Land Bistro & Lounge(8:00〜19:00)。朝のパン・サンドイッチ・ピザ・子ども用メニュー</li>
+      <li>ゲームルーム(ビリヤード・卓球・ゲーム機)、キッズアクティビティ、ジム</li>
+      <li>本館のラグーン・プール・ドルフィンクエスト・スパも宿泊者として使える</li>
+    </ul></div>
+    <div class="box"><h3>無料シャトル</h3><ul>
+      <li>キングスランド ⇄ 本館 ⇄ Kings' Shops / Queens' MarketPlace を巡回</li>
+      <li><strong>初日にフロントで時刻表をもらい、最終便の時刻を控える</strong>(夜遅い外食のあとはタクシー)</li>
+      <li>本館へ行くときは水着・タオル・日焼け止めを持って出る(戻るのに往復20分かかる)</li>
+    </ul></div>
+    <div class="box"><h3>キッチンの使い方</h3><ul>
+      <li>買い出しは Queens' MarketPlace の <strong>Island Gourmet Markets</strong>(食料品・惣菜・お酒。少し高いが便利)</li>
+      <li>初日に朝食用の牛乳・フルーツ・パン・水を買っておくと、9/20・9/23の朝がゆっくりできる。初日は無料シャトルで Queens' に寄ってから宿へ戻ると1回で済む</li>
+      <li>9/23の夜はテイクアウトを部屋で。A-Bay's のネット注文が使える</li>
+    </ul></div>
+    <div class="box"><h3>リンク</h3>
+      <div class="links"><a href="https://www.hilton.com/en/hotels/koaklgv-hilton-grand-vacations-club-kings-land-waikoloa/" target="_blank" rel="noopener">公式(Hilton)</a><a href="https://www.hiltongrandvacations.com/resorts-and-destinations/hawaii/big-island/kings-land-a-hilton-grand-vacations-club" target="_blank" rel="noopener">公式(Hilton Grand Vacations)</a><a href="https://www.worthyourwallet.com/post/kings-land-waikoloa" target="_blank" rel="noopener">宿泊レビュー記事</a><a href="https://www.tripadvisor.com/Hotel_Review-g60608-d1404166-Reviews-Hilton_Grand_Vacations_Club_Kings_Land_Waikoloa-Waikoloa_Kohala_Coast_Island_of_Hawaii_.html" target="_blank" rel="noopener">口コミ(Tripadvisor)</a><a href="https://www.queensmarketplace.com/directory/island-gourmet-markets/" target="_blank" rel="noopener">Island Gourmet Markets</a><a href="https://www.google.com/maps/dir/Kings%27+Land+by+Hilton+Grand+Vacations/Hilton+Waikoloa+Village" target="_blank" rel="noopener">地図(宿→本館)</a></div>
+    </div>
+  </div>
+</section>
+
+
+<section class="sec" id="bus">
+  <h2>🚌 宿の無料シャトル 時刻表</h2>
+  <p class="intro">公式の「Kings' Land Shuttle Schedule」を日本語にしたもの。1周30分の巡回で、コハラスイーツ → ベイクラブ → <strong>本館(下のロビー)</strong> → Kings' Shops → Queens' MarketPlace → <strong>キングスランド</strong> の順に止まります。</p>
+  <div class="grid2" style="margin-top:0">
+    <div class="box"><h3>読み方</h3><ul>
+      <li><strong>宿 → 本館</strong>: 「キングスランド着」の時刻にそのまま乗る(その便が次の周に入る)。本館まで<strong>15分</strong></li>
+      <li><strong>本館 → 宿</strong>: 「本館 下のロビー」の時刻に乗る。Kings' Shops(5分)・Queens'(10分)を経て<strong>15分</strong>で宿</li>
+      <li><strong>ショップ → 宿</strong>: Kings' Shops か Queens' の列の時刻に乗る。5〜10分で宿</li>
+      <li>午前は<strong>30分おき</strong>、14:30からは<strong>15分おき</strong>。最終は本館 21:55 発 → 宿 22:10 着</li>
+      <li>時間どおりに出発し、遅れた人を待たない。<strong>5分前には停留所に</strong></li>
+      <li>ルアウの夜(金・日・火)は 16:15〜17:15 と 20:00〜21:00 に本館直行の臨時便あり</li>
+    </ul></div>
+    <div class="box"><h3>旅程に当てはめると</h3><ul>
+      <li>9/20 ドルフィンクエスト 16:00 → 宿 <strong>14:55 発</strong>か <strong>15:10 発</strong>で本館 15:10/15:25 着。ロビーから徒歩15〜20分</li>
+      <li>9/20 朝食(Queens' 7:00〜) → 宿 <strong>7:25 発</strong> → Queens' 7:50 着。帰りは 8:20 か 8:50 に Queens' 発</li>
+      <li>9/23 A-Bay 夕方のカメ探し → 帰りは Kings' Shops 発 17:15 / 17:30 / 17:45… 15分おき</li>
+      <li>夜の外食のあとは 22:10 が最終。CanoeHouse・Pueo's からはタクシーで宿へ直接</li>
+    </ul></div>
+  </div>
+  <div class="grid2" style="margin-top:12px">
+    <div class="tblwrap"><div class="tlabel">午前〜14:00(30分おき)</div><table class="tbl bus"><tr><th>コハラ<br>スイーツ発</th><th>ベイ<br>クラブ</th><th class="hl">本館<br>下のロビー</th><th>Kings'<br>Shops</th><th>Queens'<br>Market</th><th class="hl">キングス<br>ランド着</th></tr><tr><td class="">7:00</td><td class="">7:05</td><td class="hl">7:10</td><td class="">7:15</td><td class="">7:20</td><td class="hl">7:25</td></tr><tr><td class="">7:30</td><td class="">7:35</td><td class="hl">7:40</td><td class="">7:45</td><td class="">7:50</td><td class="hl">7:55</td></tr><tr><td class="">8:00</td><td class="">8:05</td><td class="hl">8:10</td><td class="">8:15</td><td class="">8:20</td><td class="hl">8:25</td></tr><tr><td class="">8:30</td><td class="">8:35</td><td class="hl">8:40</td><td class="">8:45</td><td class="">8:50</td><td class="hl">8:55</td></tr><tr><td class="">9:00</td><td class="">9:05</td><td class="hl">9:10</td><td class="">9:15</td><td class="">9:20</td><td class="hl">9:25</td></tr><tr><td class="">9:30</td><td class="">9:35</td><td class="hl">9:40</td><td class="">9:45</td><td class="">9:50</td><td class="hl">9:55</td></tr><tr><td class="">10:00</td><td class="">10:05</td><td class="hl">10:10</td><td class="">10:15</td><td class="">10:20</td><td class="hl">10:25</td></tr><tr><td class="">10:30</td><td class="">10:35</td><td class="hl">10:40</td><td class="">10:45</td><td class="">10:50</td><td class="hl">10:55</td></tr><tr><td class="">11:00</td><td class="">11:05</td><td class="hl">11:10</td><td class="">11:15</td><td class="">11:20</td><td class="hl">11:25</td></tr><tr><td class="">11:30</td><td class="">11:35</td><td class="hl">11:40</td><td class="">11:45</td><td class="">11:50</td><td class="hl">11:55</td></tr><tr><td class="">12:00</td><td class="">12:05</td><td class="hl">12:10</td><td class="">12:15</td><td class="">12:20</td><td class="hl">12:25</td></tr><tr><td class="">12:30</td><td class="">12:35</td><td class="hl">12:40</td><td class="">12:45</td><td class="">12:50</td><td class="hl">12:55</td></tr><tr><td class="">1:00</td><td class="">1:05</td><td class="hl">1:10</td><td class="">1:15</td><td class="">1:20</td><td class="hl">1:25</td></tr><tr><td class="">1:30</td><td class="">1:35</td><td class="hl">1:40</td><td class="">1:45</td><td class="">1:50</td><td class="hl">1:55</td></tr><tr><td class="">2:00</td><td class="">2:05</td><td class="hl">2:10</td><td class="">2:15</td><td class="">2:20</td><td class="hl">2:25</td></tr></table></div>
+    <div class="tblwrap"><div class="tlabel">14:30〜22:10(15分おき)</div><table class="tbl bus"><tr><th>コハラ<br>スイーツ発</th><th>ベイ<br>クラブ</th><th class="hl">本館<br>下のロビー</th><th>Kings'<br>Shops</th><th>Queens'<br>Market</th><th class="hl">キングス<br>ランド着</th></tr><tr><td class="">2:30</td><td class="">2:35</td><td class="hl">2:40</td><td class="">2:45</td><td class="">2:50</td><td class="hl">2:55</td></tr><tr><td class="">2:45</td><td class="">2:50</td><td class="hl">2:55</td><td class="">3:00</td><td class="">3:05</td><td class="hl">3:10</td></tr><tr><td class="">3:00</td><td class="">3:05</td><td class="hl">3:10</td><td class="">3:15</td><td class="">3:20</td><td class="hl">3:25</td></tr><tr><td class="">3:15</td><td class="">3:20</td><td class="hl">3:25</td><td class="">3:30</td><td class="">3:35</td><td class="hl">3:40</td></tr><tr><td class="">3:30</td><td class="">3:35</td><td class="hl">3:40</td><td class="">3:45</td><td class="">3:50</td><td class="hl">3:55</td></tr><tr><td class="">3:45</td><td class="">3:50</td><td class="hl">3:55</td><td class="">4:00</td><td class="">4:05</td><td class="hl">4:10</td></tr><tr><td class="">4:00</td><td class="">4:05</td><td class="hl">4:10</td><td class="">4:15</td><td class="">4:20</td><td class="hl">4:25</td></tr><tr><td class="">4:15</td><td class="">4:20</td><td class="hl">4:25</td><td class="">4:30</td><td class="">4:35</td><td class="hl">4:40</td></tr><tr><td class="">4:30</td><td class="">4:35</td><td class="hl">4:40</td><td class="">4:45</td><td class="">4:50</td><td class="hl">4:55</td></tr><tr><td class="">4:45</td><td class="">4:50</td><td class="hl">4:55</td><td class="">5:00</td><td class="">5:05</td><td class="hl">5:10</td></tr><tr><td class="">5:00</td><td class="">5:05</td><td class="hl">5:10</td><td class="">5:15</td><td class="">5:20</td><td class="hl">5:25</td></tr><tr><td class="">5:15</td><td class="">5:20</td><td class="hl">5:25</td><td class="">5:30</td><td class="">5:35</td><td class="hl">5:40</td></tr><tr><td class="">5:30</td><td class="">5:35</td><td class="hl">5:40</td><td class="">5:45</td><td class="">5:50</td><td class="hl">5:55</td></tr><tr><td class="">5:45</td><td class="">5:50</td><td class="hl">5:55</td><td class="">6:00</td><td class="">6:05</td><td class="hl">6:10</td></tr><tr><td class="">6:00</td><td class="">6:05</td><td class="hl">6:10</td><td class="">6:15</td><td class="">6:20</td><td class="hl">6:25</td></tr><tr><td class="">6:15</td><td class="">6:20</td><td class="hl">6:25</td><td class="">6:30</td><td class="">6:35</td><td class="hl">6:40</td></tr><tr><td class="">6:30</td><td class="">6:35</td><td class="hl">6:40</td><td class="">6:45</td><td class="">6:50</td><td class="hl">6:55</td></tr><tr><td class="">6:45</td><td class="">6:50</td><td class="hl">6:55</td><td class="">7:00</td><td class="">7:05</td><td class="hl">7:10</td></tr><tr><td class="">7:00</td><td class="">7:05</td><td class="hl">7:10</td><td class="">7:15</td><td class="">7:20</td><td class="hl">7:25</td></tr><tr><td class="">7:15</td><td class="">7:20</td><td class="hl">7:25</td><td class="">7:30</td><td class="">7:35</td><td class="hl">7:40</td></tr><tr><td class="">7:30</td><td class="">7:35</td><td class="hl">7:40</td><td class="">7:45</td><td class="">7:50</td><td class="hl">7:55</td></tr><tr><td class="">7:45</td><td class="">7:50</td><td class="hl">7:55</td><td class="">8:00</td><td class="">8:05</td><td class="hl">8:10</td></tr><tr><td class="">8:00</td><td class="">8:05</td><td class="hl">8:10</td><td class="">8:15</td><td class="">8:20</td><td class="hl">8:25</td></tr><tr><td class="">8:15</td><td class="">8:20</td><td class="hl">8:25</td><td class="">8:30</td><td class="">8:35</td><td class="hl">8:40</td></tr><tr><td class="">8:30</td><td class="">8:35</td><td class="hl">8:40</td><td class="">8:45</td><td class="">8:50</td><td class="hl">8:55</td></tr><tr><td class="">8:45</td><td class="">8:50</td><td class="hl">8:55</td><td class="">9:00</td><td class="">9:05</td><td class="hl">9:10</td></tr><tr><td class="">9:00</td><td class="">9:05</td><td class="hl">9:10</td><td class="">9:15</td><td class="">9:20</td><td class="hl">9:25</td></tr><tr><td class="">9:15</td><td class="">9:20</td><td class="hl">9:25</td><td class="">9:30</td><td class="">9:35</td><td class="hl">9:40</td></tr><tr><td class="">9:30</td><td class="">9:35</td><td class="hl">9:40</td><td class="">9:45</td><td class="">9:50</td><td class="hl">9:55</td></tr><tr><td class="">9:45</td><td class="">9:50</td><td class="hl">9:55</td><td class="">10:00</td><td class="">10:05</td><td class="hl">10:10</td></tr></table></div>
+  </div>
+  <p class="note" style="font-size:.82rem;color:var(--ink-2);margin:10px 0 0">出典は Hilton Grand Vacations 公式の時刻表PDF。改定されることがあるので、チェックイン時にもらう紙が正。</p>
+  <div class="links"><a href="https://d1m2ucn09z2f8d.cloudfront.net/static/documents/ab1eabe6-0141-468c-8fcd-562f4750bc3d/KOAKLshuttle.pdf" target="_blank" rel="noopener">公式時刻表PDF(英語・日本語併記)</a><a href="https://www.tripadvisor.com/FAQ_Answers-g60608-d1404166-t1355440-How_often_does_the_shuttle_betweeh_Kings_Land.html" target="_blank" rel="noopener">利用者の口コミ</a></div>
+  <div class="box" style="margin-top:12px"><h3>本館 ⇄ ショップの有料シャトル(参考)</h3><ul>
+    <li>本館の下のロビー ⇄ マリオット ⇄ Kings' Shops ⇄ Queens' MarketPlace。おおむね 10:00〜22:00、15分おき前後</li>
+    <li>大人2ドル・子ども(5〜12歳)1ドル・4歳以下無料が目安(5ドルという情報もあり)。現金を用意</li>
+    <li>宿の無料シャトルが同じ所を回るので、基本は使わなくてよい</li>
+  </ul></div>
+</section>
+
+<div class="grid2">  <div class="box">
+    <h3>🚗 移動の早わかり</h3>
+    <div class="tblwrap"><table class="tbl">
+      <tr><th>行き先</th><th>手段</th><th>目安</th></tr>
+      <tr><td>キングスランド ⇄ 本館(ヒルトン・ワイコロア・ビレッジ)</td><td>宿の無料シャトル(時刻表はフロントで)</td><td>車5分</td></tr>
+      <tr><td>Kings' Shops / Queens' MarketPlace / A-Bay</td><td>宿の無料シャトル。本館⇄ショップは有料シャトル(10:00〜22:00・大人2ドル前後)か徒歩20分</td><td>車5分</td></tr>
+      <tr><td>Mauna Lani(ビーチ・CanoeHouse)</td><td>タクシー・配車アプリ</td><td>車15分</td></tr>
+      <tr><td>Pueo's Osteria(ワイコロア・ビレッジ)</td><td>タクシー・配車アプリ</td><td>車15分</td></tr>
+      <tr><td>カイルア・コナ</td><td>タクシー・配車アプリ・レンタカー</td><td>車45分・80〜120ドル</td></tr>
+      <tr><td>コナ空港</td><td>タクシー・SpeediShuttle</td><td>車30分・70〜110ドル</td></tr>
+    </table></div>
+    <p class="note" style="font-size:.85rem;color:var(--ink-2);margin:8px 0 0">シャトルは運行時間・料金が変わることがある。<strong>初日にフロントで最新の時刻表をもらう</strong>。配車アプリはワイコロア周辺だと台数が少ないので、行きに乗れても帰りは頼りにしない(予約できる holoholo が便利。「宿・移動」タブの配車アプリの節を参照)。</p>
+    <div class="links"><a href="https://www.waikoloabeachresort.com/wp-content/uploads/qmp-012020-jp.pdf" target="_blank" rel="noopener">リゾート内シャトル案内(日本語PDF)</a><a href="https://www.hilton.com/en/hotels/koahwhh-hilton-waikoloa-village/activities/shopping/" target="_blank" rel="noopener">ヒルトン公式 ショッピング/移動</a></div>
+</div>
+
+</div>
+<section class="sec" id="ride">
+  <h2>📱 ハワイ島で使える配車アプリ</h2>
+  <p class="intro">3つ入れておくと安心。コナの町と空港では呼びやすいですが、<strong>宿のまわり(ワイコロア)は車が少ない</strong>ので、帰りはタクシー予約やフロント手配を組み合わせます。</p>
+  <div class="apps">
+    <div class="app best"><div class="sub">地元の配車アプリ・おすすめ</div><h3>holoholo(ホロホロ)</h3><ul>
+      <li>ハワイ州だけの配車アプリ。コナ・ヒロ・ホテル地区に対応</li>
+      <li><strong>料金が固定</strong>で、混雑時の値上がり(サージ)なし</li>
+      <li><strong>最長1年前から予約できる</strong>。Pueo's・CanoeHouseの帰りや空港行きを予約しておくと安心</li>
+      <li>コナ空港の送迎は24時間対応</li>
+    </ul><div class="links"><a href="https://rideholoholo.com/rider/hawaii-island/" target="_blank" rel="noopener">ハワイ島ページ</a><a href="https://apps.apple.com/us/app/holoholo-mobility/id1558580591" target="_blank" rel="noopener">iPhone</a><a href="https://play.google.com/store/apps/details?id=com.holoholo.consumer" target="_blank" rel="noopener">Android</a></div></div>
+    <div class="app"><div class="sub">世界共通</div><h3>Uber</h3><ul>
+      <li>空港とコナの町では台数が多い(空港は専用乗り場)</li>
+      <li>ワイコロア周辺は台数が少なく、夜は捕まらないことも</li>
+      <li>混雑時は値段が上がる</li>
+    </ul><div class="links"><a href="https://www.uber.com/global/en/r/routes/waikoloa-hi-to-kamuela-hi" target="_blank" rel="noopener">Uber(ワイコロア発の目安)</a></div></div>
+    <div class="app"><div class="sub">世界共通</div><h3>Lyft</h3><ul>
+      <li>Uberと同じ事情。両方入れて、安い方・早い方を使う</li>
+      <li>日本のアプリと同じ使い方(行き先入力→呼ぶ)</li>
+    </ul><div class="links"><a href="https://www.lyft.com/" target="_blank" rel="noopener">Lyft</a></div></div>
+    <div class="app"><div class="sub">アプリが使えないとき</div><h3>タクシー・送迎</h3><ul>
+      <li>フロント(コンシェルジュ)に頼むのが一番確実。行きの運転手に名刺をもらい帰りも頼む</li>
+      <li>空港送迎は SpeediShuttle を事前予約できる</li>
+      <li>メーター制で、空港⇄宿は70〜110ドル+チップ15〜20%</li>
+    </ul><div class="links"><a href="https://www.speedishuttle.com/hilton-waikoloa-village-shuttle" target="_blank" rel="noopener">SpeediShuttle</a><a href="https://www.shakaguide.com/article/planyourtrip/hawaii-uber-and-lyft-guide" target="_blank" rel="noopener">ハワイの配車アプリ事情</a></div></div>
+  </div>
+  <div class="box" style="margin-top:12px"><h3>出発前にやっておくこと</h3><ul>
+    <li>3つのアプリを<strong>日本でインストールして登録・クレジットカード登録まで済ませる</strong>(現地でのSMS認証は電話番号のローミングが必要)</li>
+    <li>行き先は英語で入れる。宿は「Kings' Land by Hilton Grand Vacations」、本館は「Hilton Waikoloa Village」</li>
+    <li>9/20夜(Pueo's)・9/22夜(CanoeHouse)・9/24朝(空港)の帰りは holoholo で予約するか、フロントにタクシーを頼む</li>
+    <li>乗ったらチップはアプリで(15〜20%目安)。タクシーは現金かカードで</li>
+  </ul></div>
+</section>
+
+</div>
+<div class="tab" id="tab-eat" role="tabpanel" aria-labelledby="tb-eat"><noscript><h2 style="font-family:sans-serif;color:#0A6E79;border-top:3px solid #F7C948;padding-top:14px;margin:28px 0 8px">🍽️ お店</h2></noscript>
+<section class="sec" id="eat">
+  <h2>🍽️ 本館のレストラン・ショップ おすすめ</h2>
+  <p class="intro">本館(ヒルトン・ワイコロア・ビレッジ)の中にある店を、使いどころ別に。場所は「地図」タブの配置図と対応しています。</p>
+  <div class="apps">
+    <div class="app best"><div class="sub">夕日ディナー・要予約</div><h3>Kamuela Provision Company(KPC)</h3><ul>
+      <li>海に突き出た崖の上。本館で一番景色がよい店</li>
+      <li>地元の魚・肉を使ったハワイ料理。CanoeHouse に次ぐ「二番目のごちそう」候補</li>
+      <li>予定に入れるなら 9/21 の夜(コナから戻ったあと)。日没の30分前に入る</li>
+    </ul><div class="links"><a href="https://www.hilton.com/en/hotels/koahwhh-hilton-waikoloa-village/dining/kamuela-provision-company/" target="_blank" rel="noopener">公式</a><a href="https://www.opentable.com/r/kamuela-provision-co-waikoloa" target="_blank" rel="noopener">予約(OpenTable)</a></div></div>
+    <div class="app"><div class="sub">昼・プール横・気楽</div><h3>Lagoon Grill</h3><ul>
+      <li>ラグーンとイルカのラグーンのすぐ横。水着のまま入れる</li>
+      <li>ハンバーガー・魚のサンド・サラダ。ドルフィンクエストの日(9/20)の昼にちょうどいい</li>
+    </ul><div class="links"><a href="https://www.tripadvisor.com/Restaurant_Review-g60608-d2078817-Reviews-Lagoon_Grill-Waikoloa_Kohala_Coast_Island_of_Hawaii_Hawaii.html" target="_blank" rel="noopener">口コミ</a></div></div>
+    <div class="app"><div class="sub">家族の夜ごはん</div><h3>Nui Italian</h3><ul>
+      <li>パレスタワー側。ピザとパスタが取り分けやすく、子連れに向く</li>
+      <li>Pueo's まで出るのが面倒になった夜の代わりに</li>
+    </ul><div class="links"><a href="https://www.hilton.com/en/hotels/koahwhh-hilton-waikoloa-village/dining/" target="_blank" rel="noopener">公式 ダイニング一覧</a></div></div>
+    <div class="app"><div class="sub">朝食ビュッフェ</div><h3>Big Island Breakfast(Water's Edge)</h3><ul>
+      <li>ロビー横。フルーツ・オムレツ・ハワイ風の朝食が並ぶ</li>
+      <li>値段は高め。キッチンで済ませる朝と、1回だけ贅沢する朝で使い分け</li>
+    </ul></div>
+    <div class="app"><div class="sub">おやつ</div><h3>Orchid Marketplace & Shaka Cones</h3><ul>
+      <li>Konaプールのそば。シェイブアイスとアイス、軽食</li>
+      <li>プール遊びの合間のごほうびに</li>
+    </ul></div>
+    <div class="app"><div class="sub">コーヒー</div><h3>Waikoloa Coffee Co.</h3><ul>
+      <li>MAKAI側とオーシャンタワー側の2か所。コナコーヒーとペストリー</li>
+      <li>朝、本館に着いてからの一杯に</li>
+    </ul></div>
+    <div class="app"><div class="sub">大人の一杯</div><h3>Kona Tap Room</h3><ul>
+      <li>ロビー横のパブ。地ビール・スポーツ中継</li>
+      <li>子どもが寝たあとの交代で一杯、に向く</li>
+    </ul></div>
+    <div class="app"><div class="sub">ショー</div><h3>Legends of Hawaii Lūʻau</h3><ul>
+      <li>本館のルアウ(フラと食事のショー)。開催日が限られるので、行くなら早めに予約</li>
+      <li>Queens' MarketPlace では夕方に無料のフラショーがある日もある(掲示で確認)</li>
+    </ul><div class="links"><a href="https://www.hilton.com/en/hotels/koahwhh-hilton-waikoloa-village/island-experiences/" target="_blank" rel="noopener">ルアウ公式</a></div></div>
+  </div>
+  <div class="grid2" style="margin-top:12px">
+    <div class="box"><h3>🛍️ 本館のショップ</h3><ul>
+      <li><strong>Big Island MarketPlace</strong>(MAKAI側): 日用品・水・お菓子・お土産。忘れ物はまずここ</li>
+      <li><strong>Journey Boutique</strong>(MAKAI側): リゾートウェア・水着・帽子</li>
+      <li><strong>Na Hoku Jewelers</strong>(ロビー側): ハワイアンジュエリー。記念品に</li>
+      <li><strong>Dancing Dolphins</strong>(オーシャンタワー側): 売店</li>
+      <li><strong>Kohala Spa</strong>: 交代で1時間ずつ、が家族旅行の定番</li>
+    </ul></div>
+    <div class="box"><h3>🛒 Kings' Shops / Queens' MarketPlace の定番</h3><ul>
+      <li><strong>Island Gourmet Markets</strong>(Queens'): 食料品・惣菜・ポケ・お酒。お土産のコーヒーやマカダミアもここが安い</li>
+      <li><strong>Island Vintage Coffee</strong>(Kings'): アサイーボウルとコナコーヒー。朝6時から</li>
+      <li><strong>Kona Biscuit Company</strong>(Queens'): ビスケットの朝食。7:00〜14:00</li>
+      <li><strong>A-Bay's Island Grill</strong>(Kings'): 通し営業・テイクアウト可</li>
+      <li>Kings' Shops は高級ブランド寄り、Queens' は食とお土産寄り</li>
+    </ul><div class="links"><a href="https://kingsshops.com/" target="_blank" rel="noopener">Kings' Shops 店舗一覧</a><a href="https://www.queensmarketplace.com/" target="_blank" rel="noopener">Queens' MarketPlace 店舗一覧</a></div></div>
+  </div>
+</section>
+
+<div class="grid2">  <div class="box">
+    <h3>🍽️ お店リスト</h3>
+    <div class="tblwrap"><table class="tbl">
+      <tr><th>日</th><th>お店</th><th>メモ</th></tr>
+      <tr><td>9/19 夜</td><td>A-Bay's Island Grill</td><td>気楽に</td></tr>
+      <tr><td>9/20 朝</td><td>Kona Biscuit Company</td><td>Hawaiian Style Cafe は遠い(ワイメア)</td></tr>
+      <tr><td>9/20 夜</td><td>Pueo's Osteria</td><td>イタリアン</td></tr>
+      <tr><td>9/21 昼</td><td>Huggo's On the Rocks</td><td>コナ・海沿い</td></tr>
+      <tr><td>9/22 17:30</td><td><strong>CanoeHouse</strong></td><td><strong>予約済み・メイン</strong></td></tr>
+      <tr><td>9/23 朝</td><td>Kona Biscuit Company / Island Vintage Coffee</td><td>どちらか</td></tr>
+      <tr><td>9/23 夜</td><td>テイクアウト</td><td>自由</td></tr>
+    </table></div>
+</div>
+
+</div>
+</div>
+
+<div class="tab alt" id="tab-alt" role="tabpanel" aria-labelledby="tb-alt"><noscript><h2 style="font-family:sans-serif;color:#0A6E79;border-top:3px solid #F7C948;padding-top:14px;margin:28px 0 8px">🔄 代替案</h2></noscript>
+<section class="sec">
+  <h2>🔄 予定が変わったときの早見表</h2>
+  <p class="intro">「雨が降った」「子どもが疲れた」「カメに会えなかった」など、その場で切り替えるための候補。距離は宿(キングスランド)からの車の時間。</p>
+  <div class="qa">
+    <div class="q"><b>☔ 雨・風が強い</b>本館のKonaプールは屋根なし。→ キングスランドのゲームルーム / Queens' MarketPlace で買い物 / コナの Target・Kona Commons / Ocean Rider タツノオトシゴ農場(空港近く・屋内寄り・要予約)</div>
+    <div class="q"><b>😴 子どもが疲れた・昼寝が長い</b>→ 予定を丸ごと「宿のプール+Bistro」に置き換える。夜だけ本館へ(シャトル15分おき)</div>
+    <div class="q"><b>🐢 カメに会えなかった</b>→ 9/23夕方のA-Bayで再挑戦(しおり本文)。それでも会えなければ、コナの <strong>Kahaluʻu Beach Park</strong>(浅くて確率が高い)</div>
+    <div class="q"><b>🚗 レンタカーを借りた日</b>→ 北へ20分の <strong>Hapuna Beach</strong>(島一番の白砂・監視員あり)、または <strong>Waialea(69)Beach</strong>(木陰が多く子連れ向き)</div>
+    <div class="q"><b>🍽️ 予約の店に行けなくなった</b>→ 本館なら Nui Italian / Lagoon Grill。A-Bay 沿いなら <strong>Lava Lava Beach Club</strong>(砂の上で夕食・生演奏・子連れ歓迎)</div>
+    <div class="q"><b>🌅 夕日を見たい</b>→ 本館 Buddha Point(オーシャンタワー側)/ A-Bay のヤシ並木 / Lava Lava Beach Club のテラス</div>
+    <div class="q"><b>🚶 歩いて行ける寄り道</b>→ <strong>Waikoloa Petroglyph Preserve</strong>(Kings' Shops から徒歩10分・古代の岩絵・朝夕がよい)</div>
+    <div class="q"><b>🛒 買い出しをまとめたい</b>→ ワイコロア・ビレッジの <strong>KTA Super Stores</strong>(地元スーパー・Pueo's の近く・食料品もお土産も安い)</div>
+  </div>
+
+  <h3>🏖️ 行き先の候補(近い順)</h3>
+  <div class="pl">
+    <div class="pc"><div class="mt">徒歩・無料</div><div class="nm">Waikoloa Petroglyph Preserve</div><p>Kings' Shops の裏から続く小道に古代ハワイの岩絵が並ぶ。往復30分。暑い時間は避ける。</p><div class="links"><a href="https://www.google.com/maps/search/?api=1&query=Waikoloa+Petroglyph+Preserve" target="_blank" rel="noopener">地図</a></div></div>
+    <div class="pc"><div class="mt">A-Bay・車5分</div><div class="nm">Lava Lava Beach Club</div><p>A-Bay の砂浜に建つレストラン。足元が砂・生演奏・子連れ歓迎。夕日の時間は混むので早めに。</p><div class="links"><a href="https://www.google.com/maps/search/?api=1&query=Lava+Lava+Beach+Club+Waikoloa" target="_blank" rel="noopener">地図</a><a href="https://www.lavalavabeachclub.com/" target="_blank" rel="noopener">公式</a></div></div>
+    <div class="pc"><div class="mt">車20分・駐車有料</div><div class="nm">Hapuna Beach State Park</div><p>島で一番有名な白砂のビーチ。監視員・トイレ・シャワーあり。波がある日は浅瀬だけで。</p><div class="links"><a href="https://www.google.com/maps/search/?api=1&query=Hapuna+Beach+State+Recreation+Area" target="_blank" rel="noopener">地図</a></div></div>
+    <div class="pc"><div class="mt">車20分</div><div class="nm">Waialea Beach(Beach 69)</div><p>木陰が多く穏やかで、小さい子連れに向く。駐車場は小さいので午前中に。</p><div class="links"><a href="https://www.google.com/maps/search/?api=1&query=Waialea+Beach+Puako" target="_blank" rel="noopener">地図</a></div></div>
+    <div class="pc"><div class="mt">車25分・無料</div><div class="nm">Puʻukoholā Heiau 国立史跡</div><p>カメハメハ大王が建てた巨大な石の神殿。ビジターセンターに展示。短時間で見られる。</p><div class="links"><a href="https://www.google.com/maps/search/?api=1&query=Puukohola+Heiau+National+Historic+Site" target="_blank" rel="noopener">地図</a></div></div>
+    <div class="pc"><div class="mt">コナ・車50分</div><div class="nm">Kahaluʻu Beach Park</div><p>浅くて岩が多く、ウミガメと魚がすぐそこ。9/21のコナの日に組み込める。</p><div class="links"><a href="https://www.google.com/maps/search/?api=1&query=Kahaluu+Beach+Park+Kailua-Kona" target="_blank" rel="noopener">地図</a></div></div>
+    <div class="pc"><div class="mt">空港そば・車25分・要予約</div><div class="nm">Ocean Rider タツノオトシゴ農場</div><p>タツノオトシゴを手に乗せられる見学ツアー。帰国日の前や雨の日の候補。</p><div class="links"><a href="https://www.google.com/maps/search/?api=1&query=Ocean+Rider+Seahorse+Farm+Kailua-Kona" target="_blank" rel="noopener">地図</a><a href="https://seahorse.com/" target="_blank" rel="noopener">公式</a></div></div>
+    <div class="pc"><div class="mt">車35分</div><div class="nm">ワイメア(Waimea)の町</div><p>牧場の町。Hawaiian Style Cafe の朝食、土曜の朝市、涼しい高原。レンタカーの日向け。</p><div class="links"><a href="https://www.google.com/maps/search/?api=1&query=Waimea+Hawaii+Big+Island" target="_blank" rel="noopener">地図</a></div></div>
+    <div class="pc"><div class="mt">コナ南・車1時間</div><div class="nm">コナコーヒー農園の見学</div><p>Greenwell Farms などで無料〜少額の見学と試飲。9/21のコナの日に足を伸ばすなら。</p><div class="links"><a href="https://www.google.com/maps/search/?api=1&query=Greenwell+Farms+Kealakekua" target="_blank" rel="noopener">地図</a><a href="https://www.greenwellfarms.com/" target="_blank" rel="noopener">Greenwell 公式</a></div></div>
+    <div class="pc"><div class="mt">車2時間半・今回は非推奨</div><div class="nm">キラウエア火山(国立公園)</div><p>片道2時間半以上で、幼児連れの日帰りは負担が大きい。次回に。</p><div class="links"><a href="https://www.google.com/maps/search/?api=1&query=Hawaii+Volcanoes+National+Park" target="_blank" rel="noopener">地図</a></div></div>
+  </div>
+
+  <h3>🎁 定番のお土産と買う場所</h3>
+  <div class="grid2" style="margin-top:0">
+    <div class="box"><h3 style="margin-top:0">何を買うか</h3><ul>
+      <li><strong>コナコーヒー</strong>: 「100% Kona」表記のものを。「Kona Blend」は1割しか入っていない</li>
+      <li><strong>マカダミアナッツ</strong>(Mauna Loa / Hawaiian Host のチョコ): 配りもの向き。スーパーが安い</li>
+      <li><strong>ホノルルクッキー / Big Island Candies</strong>: 箱入りで見栄えがよい</li>
+      <li><strong>リリコイ(パッションフルーツ)バター・ハワイ産はちみつ(Big Island Bees)・ハワイアンソルト</strong>: 軽くて割れない</li>
+      <li><strong>コナビール(Kona Brewing)</strong>: 空港や町で。重いので最後に</li>
+      <li>子ども向け: ウミガメ・イルカのぬいぐるみ(Dolphin Quest の売店)、アロハシャツ、ハワイ限定のお菓子</li>
+    </ul></div>
+    <div class="box"><h3 style="margin-top:0">どこで買うか</h3><ul>
+      <li><strong>Island Gourmet Markets</strong>(Queens'・徒歩圏): まとめ買いの本命。コーヒー・ナッツ・お菓子・お酒がそろう</li>
+      <li><strong>KTA Super Stores</strong>(ワイコロア・ビレッジ・車15分): 地元スーパー。同じものが一段安い</li>
+      <li><strong>Target / Walmart / Costco</strong>(コナ): 大量に買うなら。9/21のコナの日に</li>
+      <li><strong>本館 Big Island MarketPlace</strong>: 買い忘れの穴埋め</li>
+      <li><strong>コナ空港の売店</strong>: 最後の駆け込み。品ぞろえは少なめ</li>
+    </ul><div class="links"><a href="https://www.queensmarketplace.com/directory/island-gourmet-markets/" target="_blank" rel="noopener">Island Gourmet Markets</a><a href="https://www.google.com/maps/search/?api=1&query=KTA+Super+Stores+Waikoloa+Village" target="_blank" rel="noopener">KTA Waikoloa 地図</a><a href="https://www.google.com/maps/search/?api=1&query=Target+Kailua-Kona" target="_blank" rel="noopener">Target Kona 地図</a></div></div>
+  </div>
+
+  <h3>🍧 食べ物の代替候補</h3>
+  <div class="pl">
+    <div class="pc"><div class="mt">A-Bay・夕食</div><div class="nm">Lava Lava Beach Club</div><p>予約なしで行ける夕食の第一候補。待つときは砂浜で遊ばせられる。</p><div class="links"><a href="https://www.google.com/maps/search/?api=1&query=Lava+Lava+Beach+Club+Waikoloa" target="_blank" rel="noopener">地図</a></div></div>
+    <div class="pc"><div class="mt">Queens' MarketPlace</div><div class="nm">Sansei Seafood & Sushi</div><p>寿司と創作和食。子どもが慣れた味を欲しがったときに。</p><div class="links"><a href="https://www.google.com/maps/search/?api=1&query=Sansei+Seafood+Restaurant+Waikoloa" target="_blank" rel="noopener">地図</a></div></div>
+    <div class="pc"><div class="mt">9/21の昼の代替</div><div class="nm">Kona Brewing Co.(コナ)</div><p>地ビールとピザ。Huggo's が混んでいたときに。</p><div class="links"><a href="https://www.google.com/maps/search/?api=1&query=Kona+Brewing+Company+Kailua-Kona" target="_blank" rel="noopener">地図</a></div></div>
+    <div class="pc"><div class="mt">アリイ・ドライブ</div><div class="nm">Scandinavian Shave Ice(コナ)</div><p>コナで定番のシェイブアイス。港のすぐそば。</p><div class="links"><a href="https://www.google.com/maps/search/?api=1&query=Scandinavian+Shave+Ice+Kailua-Kona" target="_blank" rel="noopener">地図</a></div></div>
+    <div class="pc"><div class="mt">ポケ</div><div class="nm">Umekes / Da Poke Shack(コナ)</div><p>地元の人が並ぶポケ屋。テイクアウトでビーチへ。</p><div class="links"><a href="https://www.google.com/maps/search/?api=1&query=Umekes+Fish+Market+Bar+and+Grill+Kailua-Kona" target="_blank" rel="noopener">地図</a></div></div>
+    <div class="pc"><div class="mt">子連れの夕食</div><div class="nm">Foster's Kitchen(コナ)</div><p>アリイ・ドライブの海沿い。ボリュームがあり子ども用メニューあり。</p><div class="links"><a href="https://www.google.com/maps/search/?api=1&query=Foster%27s+Kitchen+Kailua-Kona" target="_blank" rel="noopener">地図</a></div></div>
+  </div>
+  <p class="note" style="font-size:.82rem;color:var(--ink-2);margin:12px 0 0">営業時間・定休日は変わるので、行く前に地図リンクの営業情報を確認してください。</p>
+</section>
+</div>
+<div class="tab" id="tab-memo" role="tabpanel" aria-labelledby="tb-memo"><noscript><h2 style="font-family:sans-serif;color:#0A6E79;border-top:3px solid #F7C948;padding-top:14px;margin:28px 0 8px">📝 メモ</h2></noscript>
+<div class="grid2" id="tips">
+  <div class="box">
+    <h3>🎒 ビーチの持ち物</h3>
+    <ul>
+      <li>砂遊びセット・水遊び用の靴</li>
+      <li>日焼け止め(サンゴにやさしいもの)・帽子</li>
+      <li>ラッシュガード・タオル・着替え</li>
+      <li>飲み物・軽いおやつ</li>
+      <li>日よけ用の薄手の上着(ヤシの木陰用)</li>
+    </ul>
+  </div>
+
+  <div class="box warnbox">
+    <h3>⚠️ 困りそうなところ</h3>
+    <ul>
+      <li><strong>帰りの足</strong>: Pueo's・CanoeHouse・コナからの帰りは、店やフロントに帰りのタクシーを頼む。行きの運転手に名刺をもらって帰りも頼むのが一番確実。</li>
+      <li><strong>宿と本館が別の敷地</strong>: キングスランドから本館へは無料シャトル(車5分)。シャトルの最終便の時刻を初日に確認。夜遅くなるならタクシー。</li>
+      <li><strong>本館が広い</strong>: ロビーからドルフィンクエストまで徒歩15〜20分。トラム(モノレール)とボートは待ち時間込みで同じくらい。予約の30分前には動き出す。</li>
+      <li><strong>Hawaiian Style Cafe</strong> はワイメア(車30分以上)。行くなら別の日に車を出す前提。</li>
+      <li><strong>Mauna Lani の一般駐車場</strong>は台数が少なく、ビーチまで徒歩15分。タクシーでホテル前まで行く方が楽。</li>
+      <li><strong>現金</strong>: シャトル代・チップ用に1ドル札と5ドル札を多めに。</li>
+      <li><strong>日差し</strong>: 9月のコハラ海岸は晴れが多く暑い。ビーチは午前中、13〜15時は屋内かプール。日の入りは18:15ごろなので、夕方のカメ探し(9/23)は17:00〜18:00がちょうどよい。</li><li><strong>ルアウの日程</strong>: 本館のルアウは金・日・火。行くなら 9/20(日)の Pueo's と入れ替えるか、9/22(火)は CanoeHouse があるので不可。</li>
+    </ul>
+  </div>
+  <div class="box">
+    <h3>📌 覚えておくこと</h3>
+    <ul>
+      <li>予約が入っているのは <strong>ドルフィンクエスト(9/20 16:00)</strong> と <strong>Canoe House(9/22 17:30)</strong> の2つ</li>
+      <li>時差は19時間。初日は早めに寝て体を合わせる</li>
+      <li>ウミガメは見つけても触らない・近づきすぎない</li>
+      <li>帰国日は14:10発。11時すぎにはホテルを出る</li><li>Pueo's と Huggo's は予約しておくと安心(リンクから予約可)</li><li><strong>ESTA(米国の電子渡航認証)</strong>を全員分、出発の72時間前までに申請。パスポートの残存期間も確認</li><li><strong>チャイルドシート</strong>: 配車アプリやタクシーは用意がない。小さい子がいるなら、持ち運べる簡易ブースターを持参するか、予約時に相談(holoholo)</li><li>海外旅行保険・クレジットカードの海外利用設定・eSIMかWi-Fiを出発前に</li>
+    </ul>
+  </div>
+
+</div>
+</div>
+<footer><span class="mahalo">Mahalo!</span>ハワイ島 2026.9.19–25 · Kings' Land by Hilton Grand Vacations<br>料金・営業時間は2026年9月時点の調べ。出発前にリンク先で確認を。</footer>
+</div>
+<script>
+(function(){
+  var tabs=document.querySelectorAll('.tabs button');
+  var panels=document.querySelectorAll('.tab');
+  function show(name,noScroll){
+    panels.forEach(function(p){p.hidden=(p.id!=='tab-'+name);});
+    tabs.forEach(function(b){b.setAttribute('aria-selected',b.dataset.tab===name?'true':'false');});
+    try{localStorage.setItem('shiori-tab',name);}catch(e){}
+    if(!noScroll){window.scrollTo({top:document.querySelector('.tabs').offsetTop,behavior:'auto'});}
+  }
+  tabs.forEach(function(b){b.addEventListener('click',function(){show(b.dataset.tab);});});
+  function tabOf(el){var t=el.closest('.tab');return t?t.id.replace('tab-',''):null;}
+  document.addEventListener('click',function(e){
+    var a=e.target.closest('a[href^="#"]'); if(!a) return;
+    var target=document.getElementById(a.getAttribute('href').slice(1)); if(!target) return;
+    var name=tabOf(target); if(!name) return;
+    e.preventDefault(); show(name,true);
+    target.scrollIntoView({block:'start'});
+  });
+  var start='plan';
+  if(location.hash){var t=document.getElementById(location.hash.slice(1)); if(t&&tabOf(t)) start=tabOf(t);}
+  else{try{var sv=localStorage.getItem('shiori-tab'); if(sv&&document.getElementById('tab-'+sv)) start=sv;}catch(e){}}
+  show(start,true);
+  if(location.hash){var t2=document.getElementById(location.hash.slice(1)); if(t2) t2.scrollIntoView({block:'start'});}
+})();
+</script>
+
+</body>
+</html>
